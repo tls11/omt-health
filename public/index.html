@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="./output.css" rel="stylesheet" />
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <style>
+            [x-cloak] {
+                display: none !important;
+            }
+        </style>
+        <title>OMT Health</title>
+    </head>
+    <body class="bg-omtbeige font-forum text-slate-700 antialiased">
+        <div class="flex flex-col justify-center min-h-screen">
+            <header class="w-full">
+                <img class="m-auto h-80" src="./images/omt/logo.jpeg" alt="omt health lip logo" />
+                <!-- <nav class="">
+                    <a href="#home">home</a>
+                    <a href="#aboutem">about emily</a>
+                    <a href="#aboutmyo">myofunctional therapy</a>
+                    <a href="#faq">faq</a>
+                    <a href="#patients">patients</a>
+                    <a href="#contact">contact</a>
+                </nav> -->
+            </header>
+            <div x-data="{page: location.hash}" @hashchange.window="page = location.hash" class="">
+                <div x-cloak x-show="page === ''" class="grid w-full justify-items-center px-5">
+                    <!-- home -->
+                    <p class="mt-2 text-2xl">(805) 795-4995</p>
+                    <p class="mt-3 text-2xl">2660 Townsgate Road, Suite 450</p>
+                    <p class="mb-3 text-2xl">Westlake Village, CA 91361</p>
+                    <p class="text-2xl">myo@omthealth.com</p>
+                </div>
+                <div x-cloak x-show="page === '#aboutem'" class="grid"><!-- ebout em --></div>
+                <div x-cloak x-show="page === '#aboutmyo'" class="grid"><!-- about myo --></div>
+                <div x-cloak x-show="page === '#faq'" class="grid"><!-- faq --></div>
+                <div x-cloak x-show="page === '#patients'" class="grid"><!-- patients --></div>
+                <div x-cloak x-show="page === '#contact'" class="grid"><!-- contact --></div>
+            </div>
+        </div>
+    </body>
+</html>
