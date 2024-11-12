@@ -4,10 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link href="./output.css" rel="stylesheet" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
         <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <style>
@@ -17,19 +17,18 @@
         </style>
         <title>OMT Health</title>
     </head>
-    <body class="bg-omtbeige font-forum text-slate-700 antialiased">
-        <div class="mx-auto flex min-h-screen max-w-[80%] flex-col items-center justify-center overflow-visible rounded border-2 border-cyan-900 p-4">
+    <body class="bg-omtbeige font-forum text-lg text-slate-700 antialiased">
+        <div class="mx-auto flex min-h-screen max-w-[80%] flex-col items-center justify-center overflow-visible rounded border-2 border-slate-500 px-8">
             <header x-data="{ mobileMenuIsOpen: false }" @click.away="mobileMenuIsOpen = false" class="w-full">
                 <a href="/" class="">
-                    <img class="m-auto w-auto sm:max-w-xl" src="./images/omt/logo-text-t.png" alt="omt health lip logo" />
+                    <img class="m-auto w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
                 </a>
                 <!-- Desktop Menu -->
                 <nav class="mb-10 mt-8 hidden items-center text-3xl md:flex md:justify-around lg:justify-center lg:gap-10">
-                    <a href="#home">home</a>
+                    <a href="/">home</a>
                     <a href="#meetem">meet emily</a>
                     <a href="#omt">what is omt</a>
                     <a href="#faq">faqs</a>
-                    <a href="#patients">patients</a>
                 </nav>
                 <!-- Mobile Menu Button -->
                 <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" @click.outside="mobileMenuIsOpen = false" :aria-expanded="mobileMenuIsOpen" type="button" class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-300" aria-label="mobile menu" aria-controls="mobileMenu">
@@ -42,29 +41,20 @@
                 </button>
                 <!-- Mobile Menu -->
                 <nav x-cloak x-show="mobileMenuIsOpen" x-transition:enter="transition motion-reduce:transition-none ease-out duration-300" x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition motion-reduce:transition-none ease-out duration-300" x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" id="mobileMenu" class="fixed inset-x-0 top-0 z-10 flex max-h-svh flex-col items-center divide-y overflow-y-auto rounded-b-xl border-b border-omtgray bg-gray-100 px-6 pb-6 pt-20 text-4xl md:hidden">
-                    <a href="#home">home</a>
+                    <a href="/">home</a>
                     <a href="#meetem">meet emily</a>
                     <a href="#omt">what is omt</a>
                     <a href="#faq">faqs</a>
-                    <a href="#patients">patients</a>
                 </nav>
             </header>
-            <div x-data="{ page: location.hash || '#home' }" x-init="page = location.hash || '#home'" @hashchange.window="page = location.hash || '#home'" class="">
-                <div x-cloak x-show="page === '#home'" class="w-full justify-items-center px-5">
+            <div x-data="{ page: location.hash }" @hashchange.window="page = location.hash" class="flex w-full flex-grow flex-col items-center px-5 text-justify leading-relaxed">
+                <div x-cloak x-show="page === ''" class="flex w-full flex-grow flex-col items-center justify-items-center">
                     <!-- home -->
-                    <p class="text-2xl">Myofunctional Therapy in person or online</p>
-                    <p class="mt-3 text-xl">2660 Townsgate Road, Suite 450A, Westlake Village, CA 91361</p>
-                    <img class="mb-8 h-48 w-full rounded" src="./images/omt/village.jpeg" alt="westlake village" />
-                    <p class="text-xl">102 S. Catalina St., Ventura, CA 93001</p>
-                    <img class="mb-8 h-48 w-full rounded" src="./images/omt/venturac.png" alt="ventura" />
-                    <a href="mailto:myo@omthealth.com" class="mb-2 block text-blue-600 hover:underline">myo@omthealth.com</a>
-                    <a href="tel:+18057954995" class="text-blue-600 hover:underline">(805) 795-4995</a>
-                </div>
-                <div x-cloak x-show="page === '#patients'" class="">
-                    <!-- patients -->
-                    <section>
-                        <h2>Myofunctional Therapy</h2>
-                        <p>Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
+                    <section class="flex flex-col items-center">
+                        <a href="https://omthealth.janeapp.com/" target="_blank" class="inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">patient portal</a>
+                        <a href="https://patients.tonguethrust.com/" target="_blank" class="inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">patient videos</a>
+                        <p class="mt-7">Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
+                        <br />
                         <p>“Myo” can help you:</p>
                         <ul>
                             <li><strong>STOP</strong> a tongue thrust habit.</li>
@@ -76,71 +66,78 @@
                             <li><strong>ESTABLISH</strong> a harmonious oral environment.</li>
                             <li><strong>BETTER DEAL</strong> with issues such as speech problems, sleep apnea, snoring, digestion, clenching/grinding habits and TMJ disorders.</li>
                         </ul>
+                        <img class="mt-8 h-[300px] rounded-md" src="./images/omt/rocks.png" alt="balanced rocks" />
                     </section>
-                    <a href="https://omthealth.janeapp.com/" target="_blank" class="inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">patient portal</a>
-                    <a href="https://patients.tonguethrust.com/" target="_blank" class="inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg">patient videos</a>
+                    <p class="mt-8">Do your face, mouth, and mannerisms signal a tongue thrust problem?</p>
+                    <p>Find out:</p>
+                    <div class="flex flex-row justify-between gap-x-3">
+                        <a href="tel:+18057954995" class="text-2xl">(805) 795-4995</a>
+                        <p>|</p>
+                        <a href="mailto:myo@omthealth.com" class="text-2xl">myo@omthealth.com</a>
+                    </div>
+                    <p class="mt-9 text-2xl">MYOFUNCTIONAL THERAPY IN PERSON OR ONLINE</p>
+                    <p class="mt-3 text-xl">2660 Townsgate Road, Suite 450A, Westlake Village, CA 91361</p>
+                    <img class="mb-8 h-48 w-full rounded" src="./images/omt/village.jpeg" alt="westlake village" />
+                    <p class="text-xl">102 S. Catalina St., Ventura, CA 93001</p>
+                    <img class="mb-8 h-48 w-full rounded" src="./images/omt/venturac.png" alt="ventura" />
                 </div>
-                <div x-cloak x-show="page === '#meetem'" class="">
-                    <article>
-                        <p><strong>Emily</strong> was born and raised in Southern California. She completed her undergraduate studies at <abbr title="University of California, Davis">UC Davis</abbr> and later received her Master’s in Occupational Therapy from Nova Southeastern University in Fort Lauderdale, Florida. She holds National Board Certification through the NBCOT and is also a Certified Low Vision Therapist. Emily started off her career working at the US Department of Veterans Affairs, treating blind and low vision veterans, as old as one hundred two. Emily later transitioned to working in the school setting, providing occupational therapy to students with special needs ranging from three years old and up.</p>
-                        <p>Emily fell into orofacial myofunctional therapy after being a patient herself, treated by the esteemed Joy Moeller. She is fortunate to have experienced therapy firsthand from one of the top therapists in the field. Emily is forever grateful for the guidance and support Joy has given her. With Joy’s encouragement, along with a newfound passion for myofunctional therapy after experiencing how life changing it can be, Emily went on to become a Certified Orofacial Myofunctional Therapist through the Academy of Orofacial Myofunctional Therapy. She continued her education through classes and being personally trained by renowned myofunctional therapist and pioneer in the field, <a href="https://youtu.be/GXmEKvNIkZU" target="_blank">Barbara J. Greene</a>. Emily has since become Barbara’s associate, delivering services using her signature methods and protocols. Emily currently works alongside Barbara in her in Ventura office. She also runs her own practice in Westlake Village.</p>
-                        <p>Emily has found happiness in being able to work with patients across the lifespan and seeing transformative results regardless of age.</p>
+                <div x-cloak x-show="page === '#meetem'">
+                    <article class="flex flex-row items-center gap-4">
+                        <div class="flex flex-col">
+                            <img src="./images/omt/emily.png" alt="Emily" class="basis- rounded-lg" />
+                            <img src="./images/omt/myo-cert.jpeg" alt="myo certification badge" class="" />
+                        </div>
+                        <div class="basis-[3990px]">
+                            <p>Emily was born and raised in Southern California. She completed her undergraduate studies at UC Davis and later received her Master’s in Occupational Therapy from Nova Southeastern University in Fort Lauderdale, Florida. She holds National Board Certification through the NBCOT and is also a Certified Low Vision Therapist. Emily started off her career working at the US Department of Veterans Affairs, treating blind and low vision veterans, as old as one hundred two. Emily later transitioned to working in the school setting, providing occupational therapy to students with special needs ranging from three years old and up.</p>
+                            <br />
+                            <p>Emily fell into myofunctional therapy after being a patient herself, treated by the esteemed Joy Moeller. She is fortunate to have experienced therapy firsthand from one of the top therapists in the field. Emily is forever grateful for the guidance and support Joy has given her. With Joy’s encouragement, along with a newfound passion for myo after experiencing how life changing it can be, Emily went on to become a Certified Orofacial Myofunctional Therapist through the Academy of Orofacial Myofunctional Therapy. She continued her education through classes and being personally trained by renowned myofunctional therapist and pioneer in the field, <a href="https://youtu.be/GXmEKvNIkZU" target="_blank">Barbara J. Greene</a>. Emily has since become Barbara’s associate, delivering services using her signature methods and protocols. Emily currently works alongside Barbara in her in Ventura office. She also runs her own practice in Westlake Village.</p>
+                            <br />
+                            <p>Emily has found happiness in being able to work with patients across the lifespan and seeing transformative results regardless of age.</p>
+                        </div>
                     </article>
                 </div>
                 <div x-cloak x-show="page === '#faq'" class="">
                     <section>
-                        <h2>Research</h2>
+                            <h3 class="font-bold">How long does a program take?</h3>
+                            <p>A traditional program takes place over a twelve month period, although treatment length may vary. There are three phases to therapy: the intensive phase, the habituation phase, the maintenance phase. Initially, visits are held weekly but move to monthly intervals as therapy progresses. For success in this therapy, consistent exercise every day is necessary until the patient has corrected their improper muscle pattern. It also requires commitment by the patient, family, and time. It is possible that your myofunctional therapy journey will include referrals to other professionals such as dentists, doctors, orthodontists, ENTs, sleep specialists, and osteopaths. These factors may change the length of your program, however, a holistic approach is essential for successful treatment. Often, one of these professionals will refer you for myofunctional therapy. If a thumb or finger sucking habit is present, it must be addressed and eliminated before treatment can commence. A habit elimination program can vary but might take up to thirty days.</p>
+    
+                            <h3 class="font-bold mt-8">What does myofunctional therapy treatment look like?</h3>
+                            <p class="">You will be given a therapy kit at the beginning of your program. Each visit you will receive a list of exercises to perform, some of which might include items from your kit, though many do not require extra materials. You are expected to complete exercises two times a day, with three times a day being encouraged. Orofacial myofunctional therapy is painless, and the exercises are relatively simple.</p>
+                        
+                            <h3 class="font-bold mt-8">Should myofunctional therapy occur before or after orthodontic treatment?</h3>
+                            <p>Orthodontic and Orofacial Myofunctional Therapy are closely related, with each directly impacting the other. Each case must be analyzed and discussed by the professionals involved. Treatment might be indicated before, during, or after orthodontics. Specialists in Orofacial Myofunctional Therapy promote muscle and orofacial function balance, improving tongue posture and thus aiding in maintaining orthodontic stability, helping to diminish orthodontic relapse after braces are removed.</p>
+
+                            <h3 class="font-bold mt-8">What ages do you treat?</h3>
+                            <p>Myofunctional therapy is suitable for everyone from age 4 upwards, but treatment around the age of 7 or 8 is ideal as oral habits are less ingrained and easier to change, which can encourage normal dental growth. Motivation and commitment are key to success.</p>
+
+                            <h3 class="font-bold mt-8">Do you take insurance?</h3>
+                            <p>Upon request, a superbill will be provided for you to submit to your insurance company.</p>
+
+                            <h3 class="font-bold mt-8">Do you offer telehealth?</h3>
+                            <p>Yes. You have the option of being treated in person or via video conferencing. You can also opt for a combination of both if preferred.</p>
+                        <h1 class="font-bold mt-8">What research is available?</h1>
                         <p>Myofunctional Therapy is a relatively new field that is gaining recognition in the medical community. Research studies support the effectiveness of this discipline. Listed below are results of studies which show the significant impact of myofunctional therapy treatment.</p>
-                        <p>You can find more articles here:</p>
                         <ul>
-                            <li><a href="https://aomtinfo.org/wp-content/uploads/2015/03/AOMT-OMD-Dx-Rx-Tx-Px-Bibliography_4.21.14_5pm.pdf" target="_blank">orofacial Myofunctional Disorders (oMDs): Dx, Rx, Tx, & Px</a></li>
-                            <li><a href="https://tonguethrust.com/learning-center/articles/" target="_blank">Articles on Orofacial Development & Myofunctional Therapy</a></li>
-                            <li><a href="https://aomtinfo.org/sleep/" target="_blank">AOMT Sleep Studies</a></li>
-                            <li><a href="https://aomtinfo.org/orthodontics/" target="_blank">AOMT Orthodontics Studies</a></li>
-                            <li><a href="https://aomtinfo.org/top-studies/" target="_blank">AOMT Top Studies</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://aomtinfo.org/wp-content/uploads/2015/03/AOMT-OMD-Dx-Rx-Tx-Px-Bibliography_4.21.14_5pm.pdf" target="_blank">Orofacial Myofunctional Disorders (OMDs): Dx, Rx, Tx, & Px</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://tonguethrust.com/learning-center/articles/" target="_blank">Orofacial Development & Myofunctional Therapy</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://aomtinfo.org/sleep/" target="_blank">AOMT Sleep Studies</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://aomtinfo.org/orthodontics/" target="_blank">AOMT Orthodontics Studies</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://aomtinfo.org/top-studies/" target="_blank">AOMT Top Studies</a></li>
                         </ul>
-                        <h3>Videos</h3>
-                        <p><a href="https://tonguethrust.com/learning-center/video/" target="_blank">Watch educational videos</a></p>
-                        <h3>Links</h3>
-                        <p><a href="https://tonguethrust.com/learning-center/links/" target="_blank">Explore additional resources</a></p>
-                        <h3>Myofunctional Factors & What They Look Like</h3>
-                        <p><a href="https://tonguethrust.com/myofunctional-factors/" target="_blank">Learn about myofunctional factors</a></p>
-                        <h3>Tongue-Fascia Connection</h3>
-                        <p><a href="https://fb.watch/pB9D-8z65K/" target="_blank">Dr Steven Lin - Your tongue acts as a rudder and support...</a></p>
-                    </section>
-                    <section>
-                        <h2 class="">Myofunctional Therapy Program Details</h2>
-
-                        <h3 class="">Duration of Therapy</h3>
-                        <h1 class="font-bold">How long does a program take?</h1>
-                        <p>A traditional program takes place over a twelve month period, although treatment length may vary. There are three phases to therapy: the intensive phase, the habituation phase, the maintenance phase</p>
-                        <p class="">Initially, visits are held weekly but move to monthly intervals as therapy progresses. For success in this therapy, consistent exercise every day is necessary until the patient has corrected their improper muscle pattern. It also requires commitment by the patient, family, and time.</p>
-
-                        <p class="">It is possible that your myofunctional therapy journey will include referrals to other professionals such as dentists, doctors, orthodontists, ENTs, sleep specialists, and osteopaths. These factors may change the length of your program, however, a holistic approach is essential for successful treatment. Often, one of these professionals will refer you for myofunctional therapy. If a thumb or finger sucking habit is present, it must be addressed and eliminated before treatment can commence. A habit elimination program can vary but might take up to thirty days.</p>
-
-                        <h3 class="font-bold">What Does Myofunctional Therapy Treatment Look Like?</h3>
-                        <p class="">You will be given a therapy kit at the beginning of your program. Each visit you will receive a list of exercises to perform, some of which might include items from your kit, though many do not require extra materials. You are expected to complete exercises two times a day, with three times a day being encouraged. Orofacial myofunctional therapy is painless, and the exercises are relatively simple.</p>
-
-                        <h3 class="">Relation with Orthodontic Treatment</h3>
-                        <p class="font-bold">Should myofunctional therapy occur before or after orthodontic treatment?</p>
-                        <p>Orthodontic and Orofacial Myofunctional Therapy are closely related, with each directly impacting the other. Each case must be analyzed and discussed by the professionals involved. Treatment might be indicated before, during, or after orthodontics. Specialists in Orofacial Myofunctional Therapy promote muscle and orofacial function balance, improving tongue posture and thus aiding in maintaining orthodontic stability, helping to diminish orthodontic relapse after braces are removed.</p>
-
-                        <h3 class="">Age Suitability</h3>
-                        <p class="font-bold">What ages do you treat?</p>
-                        <p>Myofunctional therapy is suitable for everyone from age 4 upwards, but treatment around the age of 7 or 8 is ideal as oral habits are less ingrained and easier to change, which can encourage normal dental growth. Motivation and commitment are key to success.</p>
-
-                        <h3 class="">Insurance and Telehealth</h3>
-                        <p class="font-bold">Do you take insurance?</p>
-                        <p>Upon request, a superbill will be provided for you to submit to your insurance company.</p>
-
-                        <p class="font-bold">Do you offer telehealth?</p>
-                        <p>Yes. You have the option of being treated in person or via video conferencing. You can also opt for a combination of both if preferred.</p>
+                        <p class="font-bold mt-8">You can find more information below:</p>
+                        <ul>
+                            <li class="underline list-disc ml-11"><a href="https://tonguethrust.com/learning-center/video/" target="_blank">Watch educational videos</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://tonguethrust.com/myofunctional-factors/" target="_blank">Learn about myofunctional factors</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://is.gd/yf1YnZ" target="_blank">Tongue-fascia connection</a></li>
+                            <li class="underline list-disc ml-11"><a href="https://tonguethrust.com/learning-center/links/" target="_blank">Explore additional resources</a></li>
+                        </ul>
                     </section>
                 </div>
                 <div x-cloak x-show="page === '#omt'" class="">
                     <p>Orofacial Myofunctional Therapy (OMT), more commonly referred to as myofunctional therapy, is related to the study, research, prevention, evaluation, diagnosis, and treatment of functional and structural alterations in the region of the mouth (oro), face (facial), and regions of the neck (oropharyngeal area). The purpose of therapy is to assist the normalization of the developing, or developed, craniofacial structures and function through neurological re-education exercises.</p>
-
+                    <br />
                     <p>OMT treats Orofacial Myofunctional Disorders (OMDs), which are disorders of the muscles and functions of the face and mouth. An OMD is a pathological condition created by disruption in the functions of the stomatognathic system, primarily functions related to chewing, breathing, and swallowing. OMDs may affect, directly and/or indirectly: sleep apnea, facial skeletal growth and development, breathing, chewing, swallowing, speech, occlusion, posture, temporomandibular joint movement, oral hygiene, stability of orthodontic treatment, facial esthetics, restricted facial and lingual frenum, forward head posture, incorrect oral habits and more.</p>
+                    <br />
                     <p>There are 32 identified Orofacial Myofunctional Disorders. Click on each condition to learn more about the orofacial myofunctional disorder, how orofacial myofunctional therapy helps, as well as pictures of what can happen if left untreated.</p>
 
                     <div
@@ -171,7 +168,7 @@
                                 { id: 11, title: 'Hypotonic Masseters', content: '' },
                                 { id: 12, title: 'Speech Misarticulations', content: 'A person with abnormal oral muscle patterns may suffer a lisp or have difficulty in articulating sounds.  A lisp is a distortion of speech, characterized by placing the tongue between the front teeth during the production of the sounds /s/ and /z/. If muscles in the tongue and lips are incorrectly postured, this can prevent a person from forming sounds of normal speech. Improper oral muscle function may additionally lead to TMJ dysfunction, headaches, stomach distress (from swallowing air), airway obstruction, and other health challenges.' },
                                 { id: 13, title: 'Tonsils/Adenoids', content: 'Enlarged tonsils can block the airway, causing an improper positioning of the tongue.' },
-                                { id: 14, title: 'Temporomandibular disorder (TMD)', content: 'The term temporomandibular dysfunction (TMD) is used to define some problems that can affect the temporomandibular joint (TMJ), as well as muscles and structures involved in chewing. TMD may be related to various factors such as dental changes (loss or wear of the teeth, poorly fitting dentures), unilateral chewing, mouth breathing, lesions due to trauma or degeneration of the TMJ, muscle strains caused by psychological factors (stress and anxiety) and poor habits (nail biting, biting objects or food too hard, resting a hand on the chin, or clenching teeth during sleep).  The main signs and symptoms include pain around the TMJ  (it may radiate to the head and neck), along with earache, tinnitus, ear fullness, sounds when opening or closing the mouth (popping or other noises in the TMJ), pain or difficulties when opening the mouth, and pain when moving the jaw and the muscles involved in chewing.' },
+                                { id: 14, title: 'Temporomandibular Disorder (TMD)', content: 'The term temporomandibular dysfunction (TMD) is used to define some problems that can affect the temporomandibular joint (TMJ), as well as muscles and structures involved in chewing. TMD may be related to various factors such as dental changes (loss or wear of the teeth, poorly fitting dentures), unilateral chewing, mouth breathing, lesions due to trauma or degeneration of the TMJ, muscle strains caused by psychological factors (stress and anxiety) and poor habits (nail biting, biting objects or food too hard, resting a hand on the chin, or clenching teeth during sleep).  The main signs and symptoms include pain around the TMJ  (it may radiate to the head and neck), along with earache, tinnitus, ear fullness, sounds when opening or closing the mouth (popping or other noises in the TMJ), pain or difficulties when opening the mouth, and pain when moving the jaw and the muscles involved in chewing.' },
                                 { id: 15, title: 'Sleep Disorders', content: 'Recent research has shown that myofunctional therapy may reduce the symptoms of sleep disordered breathing (such as snoring), and ameliorate mild to moderate OSA (obstructive sleep apnea). When functioning and used properly, the muscles of the tongue, throat, and face, can reduce obstruction to the airway.  Sleep apnea is a potentially serious sleep disorder in which breathing repeatedly stops and starts. You may have sleep apnea if you snore loudly and you feel tired even after a full night’s sleep. There are two main types of sleep apnea: Obstructive sleep apnea, the more common form that occurs when throat muscles relax. Obstructive Sleep Apnea Syndrome is defined as an obstruction of the airflow channel during sleep. Central sleep apnea, which occurs when your brain doesn’t send proper signals to the muscles that control breathing.  ' },
                                 { id: 16, title: 'Bruxism and Clenching', content: '' },
                                 { id: 17, title: 'Low Tongue Rest Position', content: '' },
@@ -224,7 +221,7 @@
                     </div>
                 </div>
             </div>
-            <footer class="mt-6 min-w-full rounded bg-gray-100 p-4">
+            <footer class="mt-11 min-w-full rounded p-4">
                 <div class="container mx-auto flex flex-col items-center justify-center text-center">
                     <p class="mb-2 text-sm text-gray-600">The content on this website is for educational and informational purposes only and should not be used as medical advice, diagnosis, or treatment.</p>
                     <p class="text-xs text-gray-500">© 2024 OMT Health, Inc. All rights reserved.</p>
@@ -233,3 +230,8 @@
         </div>
     </body>
 </html>
+
+<!-- TODO: review css -->
+<!-- TODO: move patient buttons to top of page above logo  -->
+<!-- TODO: adjust em img and badge img 3990 -->
+<!-- TODO: faq indent bullets -->
