@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       colors: {
         omtbeige: '#edecea',
+        omtgray: '#545454',
+        omtea: '#595649',
       },
       fontFamily: {
         forum: ['forumregular'],
