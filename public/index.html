@@ -14,17 +14,12 @@
             document.addEventListener("alpine:init", () => {
                 Alpine.store("route", {
                     page: window.location.hash || "",
-
-                    // This method will be called when Alpine initializes
                     init() {
-                        // Listen for hash changes
                         window.addEventListener("hashchange", () => {
                             this.updatePageFromHash();
                         });
-                        // Set initial page from hash
                         this.updatePageFromHash();
                     },
-
                     updatePageFromHash() {
                         this.page = window.location.hash || "";
                     },
@@ -94,8 +89,6 @@
                 <div x-cloak x-show="$store.route.page === '' || $store.route.page === '#home'" x-transition.duration.450ms class="flex w-full flex-grow flex-col items-center justify-items-center">
                     <!-- home -->
                     <section class="flex flex-col items-center">
-                        <!-- <a x-cloak href="https://omthealth.janeapp.com/" target="_blank" class="absolute right-44 top-20 inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg">patient portal</a> -->
-                        <!-- <a x-cloak href="https://patients.tonguethrust.com/" target="_blank" class="absolute right-[21rem] top-20 inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg">patient videos</a> -->
                         <p class="">Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
                         <br />
                         <p class="mb-1 mt-5">“Myo” can help you:</p>
@@ -125,7 +118,8 @@
                     <img class="mb-8 h-48 w-full rounded" src="./images/omt/venturac.png" alt="ventura" />
                 </div>
                 <div x-cloak x-show="$store.route.page === '#meetem'" x-transition.duration.450ms>
-                    <article class="flex flex-row gap-4 mb-16">
+                    <!-- meet em -->
+                    <article class="mb-16 flex flex-row gap-4">
                         <div class="flex max-h-[600px] basis-1/3 flex-col justify-between gap-4">
                             <img src="./images/omt/emily2.png" alt="Emily" class="flex-1 rounded-lg" />
                             <img src="./images/omt/myo-cert.jpeg" alt="myo certification badge" class="flex-1 rounded-lg" />
@@ -143,6 +137,7 @@
                     </article>
                 </div>
                 <div x-cloak x-show="$store.route.page === '#faq'" x-transition.duration.450ms class="">
+                    <!-- faq -->
                     <section>
                         <h3 class="font-bold">How long does a myofunctional therapy program take?</h3>
                         <p>A traditional program takes place over a twelve month period, although treatment length may vary. There are three phases to therapy: the intensive phase, the habituation phase, the maintenance phase. Initially, visits are held weekly but move to monthly intervals as therapy progresses. For success in this therapy, consistent exercise every day is necessary until the patient has corrected their improper muscle pattern. It also requires commitment by the patient, family, and time. It is possible that your myofunctional therapy journey will include referrals to other professionals such as dentists, doctors, orthodontists, ENTs, sleep specialists, and osteopaths. These factors may change the length of your program, however, a holistic approach is essential for successful treatment. Often, one of these professionals will refer you for myofunctional therapy. If a thumb or finger sucking habit is present, it must be addressed and eliminated before treatment can commence. A habit elimination program can vary but might take up to thirty days.</p>
@@ -201,6 +196,7 @@
                     </section>
                 </div>
                 <div x-cloak x-show="$store.route.page === '#omt'" x-transition.duration.450ms class="">
+                    <!-- omt -->
                     <p>Orofacial Myofunctional Therapy (OMT), more commonly referred to as myofunctional therapy, is related to the study, research, prevention, evaluation, diagnosis, and treatment of functional and structural alterations in the region of the mouth (oro), face (facial), and regions of the neck (oropharyngeal area). The purpose of therapy is to assist the normalization of the developing, or developed, craniofacial structures and function through neurological re-education exercises.</p>
                     <br />
                     <p>OMT treats Orofacial Myofunctional Disorders (OMDs), which are disorders of the muscles and functions of the face and mouth. An OMD is a pathological condition created by disruption in the functions of the stomatognathic system, primarily functions related to chewing, breathing, and swallowing. OMDs may affect, directly and/or indirectly: sleep apnea, facial skeletal growth and development, breathing, chewing, swallowing, speech, occlusion, posture, temporomandibular joint movement, oral hygiene, stability of orthodontic treatment, facial esthetics, restricted facial and lingual frenum, forward head posture, incorrect oral habits and more.</p>
