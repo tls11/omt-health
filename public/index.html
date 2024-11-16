@@ -33,7 +33,7 @@
         </style>
         <title>OMT Health</title>
     </head>
-    <body class="bg-omtbeige font-forum text-xl text-slate-700 antialiased">
+    <body class="bg-omtbeige font-forum text-lg text-slate-700 antialiased">
         <div class="mx-auto my-16 flex min-h-screen max-w-[80%] flex-col items-center justify-center overflow-visible rounded border-2 border-slate-500 px-8">
             <header
                 x-data="{
@@ -60,12 +60,12 @@
                     <img class="mx-auto mt-16 w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
                 </a>
                 <!-- Desktop Menu -->
-                <nav class="mb-14 mt-8 hidden items-center text-3xl md:flex md:justify-around lg:justify-center lg:gap-10">
-                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#home' || $store.route.page === '' }" href="#home">home</a>
-                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#meetem' }" href="#meetem">meet emily</a>
-                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#omt' }" href="#omt">what is omt</a>
-                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#faq' }" href="#faq">faqs</a>
-                    <button @click="scrollToElement('contact')" class="">contact</button>
+                <nav class="mb-14 mt-8 hidden items-center text-2xl md:flex md:justify-around lg:justify-center lg:gap-10">
+                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#home' || $store.route.page === '' }" href="#home">Home</a>
+                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#meetem' }" href="#meetem">Meet Emily</a>
+                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#omt' }" href="#omt">What is OMT</a>
+                    <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#faq' }" href="#faq">FAQs</a>
+                    <button @click="scrollToElement('contact')" class="">Contact</button>
                 </nav>
                 <!-- Mobile Menu Button -->
                 <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" @click.outside="mobileMenuIsOpen = false" :aria-expanded="mobileMenuIsOpen" type="button" class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-300" aria-label="mobile menu" aria-controls="mobileMenu">
@@ -86,7 +86,7 @@
                 </nav>
             </header>
             <div x-data="{}" class="flex w-full flex-grow flex-col items-center px-5 text-justify leading-normal">
-                <div x-cloak x-show="$store.route.page === '' || $store.route.page === '#home'" x-transition.duration.450ms class="flex w-full flex-grow flex-col items-center justify-items-center">
+                <div x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms class="flex w-full flex-grow flex-col items-center justify-items-center">
                     <!-- home -->
                     <section class="flex flex-col items-center">
                         <p class="">Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
@@ -105,16 +105,16 @@
                         <img class="mt-8 h-[300px] rounded-md" src="./images/omt/rocks.png" alt="balanced rocks" />
                     </section>
                     <p id="contact" class="mb-6 mt-8">Do your face, mouth, and mannerisms signal a myofunctional disorder?</p>
-                    <p class="text-2xl">Contact OMT Health:</p>
+                    <p class="text-xl">Contact OMT Health:</p>
                     <div class="flex flex-row justify-between gap-x-3">
-                        <a href="tel:+18057954995" class="text-2xl">(805) 795-4995</a>
+                        <a href="tel:+18057954995" class="text-xl">(805) 795-4995</a>
                         <p>|</p>
-                        <a href="mailto:myo@omthealth.com" class="text-2xl">myo@omthealth.com</a>
+                        <a href="mailto:myo@omthealth.com" class="text-xl">myo@omthealth.com</a>
                     </div>
-                    <p class="mt-9 text-2xl">MYOFUNCTIONAL THERAPY IN-PERSON OR ONLINE</p>
-                    <p class="mt-3 text-xl">2660 Townsgate Road, Suite 450, Westlake Village, CA 91361</p>
+                    <p class="mt-9 text-xl">MYOFUNCTIONAL THERAPY IN-PERSON OR ONLINE</p>
+                    <p class="mt-3 text-lg">2660 Townsgate Road, Suite 450, Westlake Village, CA 91361</p>
                     <img class="mb-8 h-48 w-full rounded" src="./images/omt/village.jpeg" alt="westlake village" />
-                    <p class="text-xl">102 S. Catalina St., Ventura, CA 93001</p>
+                    <p class="text-lg">102 S. Catalina St., Ventura, CA 93001</p>
                     <img class="mb-8 h-48 w-full rounded" src="./images/omt/venturac.png" alt="ventura" />
                 </div>
                 <div x-cloak x-show="$store.route.page === '#meetem'" x-transition.duration.450ms>
@@ -129,7 +129,7 @@
                             <br />
                             <p>
                                 Emily fell into myofunctional therapy after being a patient herself, treated by the esteemed Joy Moeller. She is fortunate to have experienced therapy firsthand from one of the top therapists in the field. Emily is forever grateful for the guidance and support Joy has given her. With Joy’s encouragement, along with a newfound passion for myo after experiencing how life changing it can be, Emily went on to become a Certified Orofacial Myofunctional Therapist through the Academy of Orofacial Myofunctional Therapy. She continued her education through classes and being personally trained by renowned myofunctional therapist and pioneer in the field,
-                                <a href="https://youtu.be/GXmEKvNIkZU" class="underline" target="_blank">Barbara J. Greene</a>. Emily has since become Barbara’s associate, delivering services using her signature methods and protocols. Emily currently works alongside Barbara in her in Ventura office. She also runs her own practice in Westlake Village.
+                                Barbara J. Greene. Emily has since become Barbara’s associate, delivering services using her signature methods and protocols. Emily currently works alongside Barbara in her in Ventura office. She also runs her own practice in Westlake Village.
                             </p>
                             <br />
                             <p>Emily has found happiness in being able to work with patients across the lifespan and seeing transformative results regardless of age.</p>
