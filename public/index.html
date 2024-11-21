@@ -1,781 +1,458 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="[width=device-width, initial-scale=1.0" />
-        <link href="./output.css" rel="stylesheet" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <script
-            defer
-            src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
-        ></script>
-        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <script>
-            document.addEventListener('alpine:init', () => {
-                Alpine.store('route', {
-                    page: window.location.hash || '',
-                    init() {
-                        window.addEventListener('hashchange', () => {
-                            this.updatePageFromHash()
-                        })
-                        this.updatePageFromHash()
-                    },
-                    updatePageFromHash() {
-                        this.page = window.location.hash || ''
-                    },
-                })
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="[width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.store('route', {
+          page: window.location.hash || '',
+          init() {
+            window.addEventListener('hashchange', () => {
+              this.updatePageFromHash()
             })
-        </script>
-        <style>
-            [x-cloak] {
-                display: none !important;
-            }
-        </style>
-        <title>OMT Health</title>
-    </head>
-    <body class="bg-omtbeige font-forum text-lg text-slate-700 antialiased">
-        <div
-            class="mx-auto my-16 flex min-h-screen max-w-[80%] flex-col items-center justify-center overflow-visible rounded border-2 border-slate-500 px-8"
-        >
-            <header
-                x-data="{
-			        mobileMenuIsOpen: false,
-				    scrollToElement: function (id) {
-				        location.hash = '#home'
-				        setTimeout(() => {
-				            const element = document.getElementById(id)
-				            if (element) {
-				                element.scrollIntoView({
-				                    behavior: 'smooth',
-				                    block: 'start',
-				                })
-				            }
-				        }, 500)
-				    },
+            this.updatePageFromHash()
+          },
+          updatePageFromHash() {
+            this.page = window.location.hash || ''
+          },
+        })
+      })
+    </script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+    <title>OMT Health</title>
+  </head>
+  <body class="bg-omtbeige font-forum text-sm md:text-lg text-slate-700 antialiased">
+    <div class="mx-auto my-16 flex min-h-screen md:max-w-[80%] flex-col items-center justify-center overflow-visible rounded md:border-2 md:border-slate-500 px-8">
+      <header
+        x-data="{
+          mobileMenuIsOpen: false,
+          scrollToElement: function (id) {
+              location.hash = '#home'
+              setTimeout(() => {
+                const element = document.getElementById(id)
+                if (element) {
+                  element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                  })
+                }
+              }, 500)
+          },
 				}"
-                @click.away="mobileMenuIsOpen = false"
-                class="w-full"
-            >
-                <a
-                    x-cloak
-                    x-show="$store.route.page === '#home' || $store.route.page === ''"
-                    x-transition.duration.450ms
-                    href="https://omthealth.janeapp.com/"
-                    target="_blank"
-                    class="absolute right-44 top-20 inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg"
-                >
-                    patient portal
-                </a>
-                <a
-                    x-cloak
-                    x-show="$store.route.page === '#home' || $store.route.page === ''"
-                    x-transition.duration.450ms
-                    href="https://patients.tonguethrust.com/"
-                    target="_blank"
-                    class="absolute right-[21rem] top-20 inline-block w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg"
-                >
-                    patient videos
-                </a>
-                <a href="#home" class="">
-                    <img
-                        class="mx-auto mt-16 w-[26rem] sm:max-w-xl"
-                        src="./images/omt/logo-text-new-color.png"
-                        alt="omt health lip logo"
-                    />
-                </a>
-                <!-- Desktop Menu -->
-                <nav
-                    class="mb-14 mt-8 hidden items-center text-2xl md:flex md:justify-around lg:justify-center lg:gap-10"
-                >
-                    <a
-                        :class="{
-						    'border-b-2 border-slate-500': $store.route.page === '#home' || $store.route.page === '',
+        @click.away="mobileMenuIsOpen = false"
+        class="w-full relative"
+      >
+        <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://omthealth.janeapp.com/" target="_blank" class="absolute right-0 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient portal</a>
+        <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://patients.tonguethrust.com/" target="_blank" class="absolute right-40 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient videos</a>
+        <a href="#home" class="">
+          <img class="mx-auto md:mt-16 w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
+        </a>
+        <!-- Desktop Menu -->
+        <nav class="mb-14 mt-8 hidden items-center text-2xl md:flex md:justify-around lg:justify-center lg:gap-10">
+          <a
+            :class="{
+              'border-b-2 border-slate-500': $store.route.page === '#home' || $store.route.page === '',
 						}"
-                        href="#home"
-                    >
-                        Home
-                    </a>
-                    <a
-                        :class="{ 'border-b-2 border-slate-500': $store.route.page === '#meetem' }"
-                        href="#meetem"
-                    >
-                        Meet Emily
-                    </a>
-                    <a
-                        :class="{ 'border-b-2 border-slate-500': $store.route.page === '#omt' }"
-                        href="#omt"
-                    >
-                        What is OMT
-                    </a>
-                    <a
-                        :class="{ 'border-b-2 border-slate-500': $store.route.page === '#faq' }"
-                        href="#faq"
-                    >
-                        FAQs
-                    </a>
-                    <button @click="scrollToElement('contact')" class="">Contact</button>
-                </nav>
-                <!-- Mobile Menu Button -->
-                <button
-                    @click="mobileMenuIsOpen = !mobileMenuIsOpen"
-                    @click.outside="mobileMenuIsOpen = false"
-                    :aria-expanded="mobileMenuIsOpen"
-                    type="button"
-                    class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-300"
-                    aria-label="mobile menu"
-                    aria-controls="mobileMenu"
-                >
-                    <svg
-                        x-cloak
-                        x-show="!mobileMenuIsOpen"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        class="size-6"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                        />
-                    </svg>
-                    <svg
-                        x-cloak
-                        x-show="mobileMenuIsOpen"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        stroke-width="2"
-                        stroke="currentColor"
-                        class="size-6"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M6 18 18 6M6 6l12 12"
-                        />
-                    </svg>
-                </button>
-                <!-- Mobile Menu -->
-                <nav
-                    x-cloak
-                    x-show="mobileMenuIsOpen"
-                    x-transition:enter="transition motion-reduce:transition-none ease-out duration-300"
-                    x-transition:enter-start="-translate-y-full"
-                    x-transition:enter-end="translate-y-0"
-                    x-transition:leave="transition motion-reduce:transition-none ease-out duration-300"
-                    x-transition:leave-start="translate-y-0"
-                    x-transition:leave-end="-translate-y-full"
-                    id="mobileMenu"
-                    class="fixed inset-x-0 top-0 z-10 flex max-h-svh flex-col items-center divide-y overflow-y-auto rounded-b-xl border-b border-omtgray bg-gray-100 px-6 pb-6 pt-20 text-4xl md:hidden"
-                >
-                    <a href="#home">Home</a>
-                    <a href="#meetem">Meet Emily</a>
-                    <a href="#omt">What is OMT</a>
-                    <a href="#faq">FAQs</a>
-                    <button @click="scrollToElement('contact')" class="">Contact</button>
-                </nav>
-            </header>
-            <div
-                x-data="{}"
-                class="flex w-full flex-grow flex-col items-center px-5 text-justify leading-normal"
-            >
-                <div
-                    x-cloak
-                    x-show="$store.route.page === '#home' || $store.route.page === ''"
-                    x-transition.duration.450ms
-                    class="flex w-full flex-grow flex-col items-center justify-items-center"
-                >
-                    <!-- home -->
-                    <section class="flex flex-col items-center">
-                        <p class="">
-                            Myofunctional therapy is a program of exercises that helps you stop oral
-                            and facial habits that can ruin your smile, change your appearance and
-                            sap your health. It retrains the muscles of your mouth, jaw and face,
-                            bringing them into harmony. And it instills new and positive habits to
-                            make sure those changes last.
-                        </p>
-                        <br />
-                        <p class="mb-1 mt-5">“Myo” can help you:</p>
-                        <ul>
-                            <li>
-                                <strong>STOP</strong>
-                                a tongue thrust habit.
-                            </li>
-                            <li>
-                                <strong>START</strong>
-                                breathing through your nose instead of your mouth.
-                            </li>
-                            <li>
-                                <strong>QUIT</strong>
-                                thumb-sucking, nail-biting, lip/cheek-chewing or other poor habits.
-                            </li>
-                            <li>
-                                <strong>OVERCOME</strong>
-                                unsightly manners of eating and drinking.
-                            </li>
-                            <li>
-                                <strong>IMPROVE</strong>
-                                head-neck-body posture.
-                            </li>
-                            <li>
-                                <strong>PREVENT</strong>
-                                or correct Long Face Syndrome.
-                            </li>
-                            <li>
-                                <strong>ESTABLISH</strong>
-                                a harmonious oral environment.
-                            </li>
-                            <li>
-                                <strong>BETTER DEAL</strong>
-                                with issues such as speech problems, sleep apnea, snoring,
-                                digestion, clenching/grinding habits and TMJ disorders.
-                            </li>
-                        </ul>
-                        <img
-                            class="mt-8 h-[300px] rounded-md"
-                            src="./images/omt/rocks.png"
-                            alt="balanced rocks"
-                        />
-                    </section>
-                    <p id="contact" class="mb-6 mt-8">
-                        Do your face, mouth, and mannerisms signal a myofunctional disorder?
-                    </p>
-                    <p class="text-xl">Contact OMT Health:</p>
-                    <div class="flex flex-row justify-between gap-x-3">
-                        <a href="tel:+18057954995" class="text-xl">(805) 795-4995</a>
-                        <p>|</p>
-                        <a href="mailto:myo@omthealth.com" class="text-xl">myo@omthealth.com</a>
-                    </div>
-                    <p class="mt-9 text-xl">MYOFUNCTIONAL THERAPY IN-PERSON OR ONLINE</p>
-                    <p class="mt-3 text-lg">
-                        2660 Townsgate Road, Suite 450, Westlake Village, CA 91361
-                    </p>
-                    <img
-                        class="mb-8 h-48 w-full rounded"
-                        src="./images/omt/village.jpeg"
-                        alt="westlake village"
-                    />
-                    <p class="text-lg">102 S. Catalina St., Ventura, CA 93001</p>
-                    <img
-                        class="mb-8 h-48 w-full rounded"
-                        src="./images/omt/venturac.png"
-                        alt="ventura"
-                    />
-                </div>
-                <div x-cloak x-show="$store.route.page === '#meetem'" x-transition.duration.450ms>
-                    <!-- meet em -->
-                    <article class="mb-11 flex flex-row gap-8">
-                        <div
-                            class="flex min-h-min basis-1/4 flex-col items-stretch justify-start gap-4 overflow-hidden rounded-lg"
-                        >
-                            <img
-                                src="./images/omt/emily2.png"
-                                alt="Emily"
-                                class="max-h-70 rounded-lg object-contain"
-                            />
-                            <img
-                                src="./images/omt/myo-cert.jpeg"
-                                alt="myo certification badge"
-                                class="max-h-70 rounded-lg object-contain"
-                            />
-                        </div>
-                        <div class="basis-3/4">
-                            <p>
-                                Emily was born and raised in Southern California. She completed her
-                                undergraduate studies at UC Davis and later received her Master’s in
-                                Occupational Therapy from Nova Southeastern University in Fort
-                                Lauderdale, Florida. She holds National Board Certification through
-                                the NBCOT and is also a Certified Low Vision Therapist. Emily
-                                started off her career working at the US Department of Veterans
-                                Affairs, treating blind and low vision veterans as old as one
-                                hundred two. Emily later transitioned to working in the school
-                                setting, providing occupational therapy to students with special
-                                needs ranging from three years old and up.
-                            </p>
-                            <br />
-                            <p>
-                                Emily fell into myofunctional therapy after being a patient herself,
-                                treated by the esteemed Joy Moeller. She is fortunate to have
-                                experienced therapy firsthand from one of the top therapists in the
-                                field. Emily is forever grateful for the guidance and support Joy
-                                has given her. With Joy’s encouragement, along with a newfound
-                                passion for myo after experiencing how life changing it can be,
-                                Emily went on to become a Certified Orofacial Myofunctional
-                                Therapist through the Academy of Orofacial Myofunctional Therapy.
-                                She continued her education through classes and being personally
-                                trained by renowned myofunctional therapist and pioneer in the
-                                field, Barbara J. Greene. Emily has since become Barbara’s
-                                associate, delivering services using her signature methods and
-                                protocols. Emily currently works alongside Barbara in her in Ventura
-                                office. She also runs her own practice in Westlake Village.
-                            </p>
-                            <br />
-                            <p>
-                                Emily has found happiness in being able to work with patients across
-                                the lifespan and seeing transformative results regardless of age.
-                            </p>
-                        </div>
-                    </article>
-                </div>
-                <div
-                    x-cloak
-                    x-show="$store.route.page === '#faq'"
-                    x-transition.duration.450ms
-                    class=""
-                >
-                    <!-- faq -->
-                    <section>
-                        <h3 class="font-bold">
-                            How long does a myofunctional therapy program take?
-                        </h3>
-                        <p>
-                            A traditional program takes place over a twelve month period, although
-                            treatment length may vary. There are three phases to therapy: the
-                            intensive phase, the habituation phase and the maintenance phase.
-                            Initially, visits are held weekly but move to monthly intervals as
-                            therapy progresses. For success in this therapy, consistent exercise
-                            every day is necessary until the patient has corrected their improper
-                            muscle pattern. It also requires commitment by the patient, family, and
-                            time. It is possible that your myofunctional therapy journey will
-                            include referrals to other professionals such as dentists, doctors,
-                            orthodontists, ENTs, sleep specialists, and osteopaths. These factors
-                            may change the length of your program, however, a holistic approach is
-                            essential for successful treatment. Often, one of these professionals
-                            will refer you for myofunctional therapy. If a thumb or finger sucking
-                            habit is present, it must be addressed and eliminated before treatment
-                            can commence. A habit elimination program can vary but might take up to
-                            thirty days.
-                        </p>
-
-                        <h3 class="mt-8 font-bold">
-                            What does myofunctional therapy treatment look like?
-                        </h3>
-                        <p class="">
-                            You will be given a therapy kit at the beginning of your program. Each
-                            visit you will receive a list of exercises to perform, some of which
-                            might include items from your kit, though many do not require extra
-                            materials. You are expected to complete exercises two times a day, with
-                            three times a day being encouraged. Orofacial myofunctional therapy is
-                            painless and the exercises are relatively simple.
-                        </p>
-
-                        <h3 class="mt-8 font-bold">
-                            Should myofunctional therapy occur before or after orthodontic
-                            treatment?
-                        </h3>
-                        <p>
-                            Orthodontic and Orofacial Myofunctional Therapy are closely related,
-                            with each directly impacting the other. Each case must be analyzed and
-                            discussed by the professionals involved. Treatment might be indicated
-                            before, during, or after orthodontics. Specialists in Orofacial
-                            Myofunctional Therapy promote muscle and orofacial function balance,
-                            improving tongue posture and thus aiding in maintaining orthodontic
-                            stability, helping to diminish orthodontic relapse after braces are
-                            removed.
-                        </p>
-
-                        <h3 class="mt-8 font-bold">What ages do you treat?</h3>
-                        <p>
-                            Myofunctional therapy is suitable for everyone from age four upwards,
-                            but treatment around the age of seven or eight is ideal as oral habits
-                            are less ingrained and easier to change, which can encourage normal
-                            dental growth. Motivation and commitment are key to success.
-                        </p>
-
-                        <h3 class="mt-8 font-bold">Do you take insurance?</h3>
-                        <p>
-                            To prevent insurers from denying, delaying or dictating the course of
-                            your program, OMT Health does not accept insurance. Upon request, a
-                            superbill will be provided for you to submit to your insurance company.
-                            You are more likely to be successful with your claim if you have a
-                            letter of medical necessity from a doctor.  If needed, OMT Health will
-                            gladly collaborate with your provider to best articulate the
-                            justification for myofunctional therapy.
-                        </p>
-
-                        <h3 class="mt-8 font-bold">Do you offer telehealth?</h3>
-                        <p>
-                            Yes. You have the option of being treated in person or via video
-                            conferencing. You can also opt for a combination of both if preferred.
-                        </p>
-                        <h1 class="mt-8 font-bold">What research is available?</h1>
-                        <p>
-                            Myofunctional Therapy is a relatively new field that is gaining
-                            recognition in the medical community. Research studies support the
-                            effectiveness of this discipline. Listed below are links to studies
-                            which show the significant impact of myofunctional therapy treatment.
-                        </p>
-                        <ul>
-                            <li class="ml-11 list-disc underline">
-                                <a
-                                    href="https://aomtinfo.org/wp-content/u[ploads/2015/03/AOMT-OMD-Dx-Rx-Tx-Px-Bibliography_4.21.14_5pm.pdf"
-                                    target="_blank"
-                                >
-                                    Orofacial Myofunctional Disorders (OMDs): Dx, Rx, Tx, & Px
-                                    Selected Bibliography
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a
-                                    href="https://tonguethrust.com/learning-center/articles/"
-                                    target="_blank"
-                                >
-                                    Orofacial Development & Myofunctional Therapy
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a href="https://aomtinfo.org/sleep/" target="_blank">
-                                    AOMT Sleep Studies
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a href="https://aomtinfo.org/orthodontics/" target="_blank">
-                                    AOMT Orthodontics Studies
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a href="https://aomtinfo.org/top-studies/" target="_blank">
-                                    AOMT Top Studies
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="mt-8 font-bold">You can find more information below:</p>
-                        <ul>
-                            <li class="ml-11 list-disc underline">
-                                <a
-                                    href="https://tonguethrust.com/learning-center/video/"
-                                    target="_blank"
-                                >
-                                    Watch educational videos
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a
-                                    href="https://tonguethrust.com/myofunctional-factors/"
-                                    target="_blank"
-                                >
-                                    Learn about myofunctional factors
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a href="https://tonguethrust.com/about/gallery/" target="_blank">
-                                    Before and after
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a href="https://is.gd/yf1YnZ" target="_blank">
-                                    Tongue-fascia connection
-                                </a>
-                            </li>
-                            <li class="ml-11 list-disc underline">
-                                <a
-                                    href="https://tonguethrust.com/learning-center/links/"
-                                    target="_blank"
-                                >
-                                    Explore additional resources
-                                </a>
-                            </li>
-                        </ul>
-                    </section>
-                </div>
-                <div
-                    x-cloak
-                    x-show="$store.route.page === '#omt'"
-                    x-transition.duration.450ms
-                    class=""
-                >
-                    <!-- omt -->
-                    <p>
-                        Orofacial Myofunctional Therapy (OMT), more commonly referred to as
-                        myofunctional therapy, is related to the study, research, prevention,
-                        evaluation, diagnosis, and treatment of functional and structural
-                        alterations in the region of the mouth (oro), face (facial), and regions of
-                        the neck (oropharyngeal area). The purpose of therapy is to assist the
-                        normalization of the developing, or developed, craniofacial structures and
-                        function through neurological re-education exercises.
-                    </p>
-                    <br />
-                    <p>
-                        OMT treats Orofacial Myofunctional Disorders (OMDs), which are disorders of
-                        the muscles and functions of the face and mouth. An OMD is a pathological
-                        condition created by disruption in the functions of the stomatognathic
-                        system, primarily functions related to chewing, breathing, and swallowing.
-                        OMDs may affect, directly and/or indirectly: sleep apnea, facial skeletal
-                        growth and development, breathing, chewing, swallowing, speech, occlusion,
-                        posture, temporomandibular joint movement, oral hygiene, stability of
-                        orthodontic treatment, facial esthetics, restricted facial and lingual
-                        frenum, forward head posture, incorrect oral habits and more.
-                    </p>
-                    <br />
-                    <p>
-                        There are 32 identified Orofacial Myofunctional Disorders. Click on each
-                        condition to learn more about the disorder, how myofunctional therapy helps,
-                        as well as pictures of what can happen if left untreated.
-                    </p>
-
-                    <div
-                        x-data="{
-						    active: null,
-						    disorders: [
-						        {
-						            id: 1,
-						            mainTitle: 'Mouth Breathing',
-						            mainContent:
-						                'Mouth breathing refers to breathing performed predominantly by the mouth. In this way of breathing, the individual does not use, or uses very little, the nose to inhale and exhale the air.  The person may have one or more of the following characteristics: nasal congestion, open mouth at rest; parched lips, lip color change, appearance of a large tongue that may be recessed and projected forward; long face syndrome; forward head posture; dark circles under the eyes, sagging cheeks, wheezing, and snoring. In such cases it is recommended that an otolaryngologist (ENT) and/or allergist be consulted.  The most common causes of mouth breathing are: allergic rhinitis, sinusitis, bronchitis, enlarged adenoids; enlarged tonsils; weakness or low tone of facial muscles that may lead to open mouth rest posture, habits such as thumb sucking, tumors in the region of the nose, enlarged turbinates, and nose fractures, amongst others.  Mouth breathing can cause damage in several aspects, such as the mouth’s and face’s structures and their function, including sleep, feeding, learning, hearing and speech.',
-						            sections: [
-						                {
-						                    title: 'How can mouth breathing cause changes to the structure of the mouth and the face?',
-						                    content:
-						                        'Keeping an open mouth posture can cause: dry and chapped lips, short and fast breathing; diminished strength of the muscles of the lips, cheeks, jaw and tongue; a lowered and more anterior oral rest posture of the tongue, leading to changes in aesthetics and position of teeth/occlusion (improper fit of the teeth); elongated face, retruded mandible, and palate (“roof of the mouth”) becoming more narrow and or deep.',
-						                },
-						                {
-						                    title: 'How can mouth breathing affect functions related to the mouth and face?',
-						                    content:
-						                        'Mouth breathing leads to chewing food with lips apart, which becomes faster, noisier and less efficient than with lips closed. This can lead to greater digestive problems and potential for choking due to the poor coordination between breathing, chewing, and an increase in the swallowing of air. It’s hard to breathe through the mouth when the mouth is full, thus an individual will need to choose whether to chew or to breathe. In the process of swallowing, one may also notice changes such as: anterior projection of the tongue, noise, contraction of muscles that wrap around the mouth and movements of the head. There may also be excessive production of saliva and an anterior lisp: which is a distortion of speech characterized by placing the tongue between the front teeth during sound production of /s/ and /z/.',
-						                },
-						                {
-						                    title: 'What are key issues that may be caused by mouth breathing during sleep?',
-						                    content:
-						                        'When sleeping with the mouth open, a person may have some of these characteristics: restless sleep, snoring, headaches, drooling on the pillow, thirst when waking up, morning sleepiness, sleep apnea (breathing interruptions during sleep), and decreased oxygen saturation in the blood.',
-						                },
-						                {
-						                    title: 'What are disadvantages that mouth breathing may contribute with regards to feeding and body weight?',
-						                    content:
-						                        'Mouth breathers may have poor appetite, lower strength for chewing and swallowing difficulties. Thus they may prefer softer foods and the use of liquid to assist feeding. The feeding of mouth breathers may also be impaired because of decreased olfaction (smell) and taste (taste). As a result of changes in chewing, smell, and taste, the individual may have decreased appetite, gastric changes, constant thirst, gagging, pallor, anorexia, and weight loss with less physical improving or, conversely, obesity.',
-						                },
-						                {
-						                    title: 'What are the main disadvantages to learning caused by mouth breathing?',
-						                    content:
-						                        'Sleep disturbances can generate agitation, anxiety, impatience, decreased levels of alertness, impulsiveness and discouragement. All of these changes can cause difficulties with attention, concentration, memory problems, and subsequent learning difficulties in children. During the critical periods of a child’s development, mouth breathing can be more detrimental to learning.',
-						                },
-						                {
-						                    title: 'What are the main disadvantages to hearing and speech caused by mouth breathing?',
-						                    content:
-						                        'It is common in mouth breathing children to have more colds, infections in the nose, throat and chronic ear infections. Ear infection may lead to hearing loss, speech problems, language delays and vestibular issues. It is important to pay close attention to children in such cases: listen well to determine if they have difficulty hearing in the presence of noise; if they are unable to answer questions or follow direction, or could be considered inattentive. Most common changes are hoarseness in voice. This is because of the constantly open mouth leading to a drying out of all the structures that produce the voice and because the muscles are contracted for a long time, they may also appear to frequently have a cold and a runny nose.',
-						                },
-						                {
-						                    title: 'What are the main disadvantages of mouth breathing regarding body posture?',
-						                    content:
-						                        'One major alteration is a change in the head’s postural position. The head will go forward seeking a larger space to breathe better, as often the tongue is resting in the floor of the mouth. We can also find other changes in the body caused by mouth breathing, as the abdominal muscles are weakened and stretched; dark circles with asymmetric positioning of the eyes, tired eyes, and shoulders that may come forward and compresses the abdomen.',
-						                },
-						                {
-						                    title: 'Which kind of specialist in orofacial myofunctional therapy should a mouth breather seek?',
-						                    content:
-						                        'An individual who breathes through the mouth can seek an Orofacial Myofunctional Therapy Specialist to assist in the treatment of mouth breathing, as any general Myofunctional Therapist is trained to deal with these cases, but some seek additional training in respiratory education techniques that may be helpful in treatment. Orofacial Myofunctional Therapy is commenced only after evaluation of the cause. It is advisable to also work within an allied team, with an otholaryngologyst/ ENT, a breathing specialist and /or an allergist as well.',
-						                },
-						            ],
-						        },
-						        { id: 2, mainTitle: 'Open Mouth Posture', mainContent: '' },
-						        {
-						            id: 3,
-						            mainTitle: 'Anterior Tongue Thrust',
-						            mainContent:
-						                'When a person swallows incorrectly, the tip and/or sides of the tongue press against or spread between the teeth. This is commonly called a tongue thrust. Constant pressure from resting or incorrectly thrusting the tongue away from the hard palate may push teeth out of place. That pressure may later prevent teeth from erupting (breaking through the gum). The constant pressure of the tongue against or between the teeth will not allow the teeth to bite together. This is known as an open bite.  An improper alignment or malocclusion between the upper and lower teeth can lead to difficulties in biting and chewing food.',
-						        },
-						        {
-						            id: 4,
-						            mainTitle: 'Bilateral Tongue Thrust',
-						            mainContent:
-						                'When a person swallows incorrectly, the tip and/or sides of the tongue press against or spread between the teeth. This is commonly called a tongue thrust. Constant pressure from resting or incorrectly thrusting the tongue away from the hard palate may push teeth out of place. That pressure may later prevent teeth from erupting (breaking through the gum). The constant pressure of the tongue against or between the teeth will not allow the teeth to bite together. This is known as an open bite.  An improper alignment or malocclusion between the upper and lower teeth can lead to difficulties in biting and chewing food.',
-						        },
-						        {
-						            id: 5,
-						            mainTitle: 'Tongue Tie',
-						            mainContent:
-						                'Tongue-tie, also known as ankyloglossia, is a term used to characterize a common condition that often goes undetected. It occurs during pregnancy when a small portion of tissue that should disappear during the infant’s development remains at the bottom of the tongue, restricting its movement. When an infant is born with tongue-tie, it is important to research other family members, since this change has a genetic influence. A specialist in Orofacial Myofunctional Therapy should be well suited to detect a tongue-tie since they should know about the lingual frenulum and also the normal way the newborn sucks.  There are varying degrees of tongue-tie.',
-						            sections: [
-						                {
-						                    title: 'How and when should tongue-tie be treated?',
-						                    content:
-						                        'When the tongue cannot perform all the necessary movements and thus jeopardizes the way of sucking, swallowing, chewing or talking, a small surgery or frenotomy in the tongue is indicated. The “cut” of the frenum in infants is a simple procedure done with scissors, scalpel, or laser and anesthetic gel, which lasts about five minutes. In older children and adults the most common procedure is the frenectomy (partial removal of the lingual frenulum).',
-						                },
-						                {
-						                    title: 'When is a surgical procedure indicated to release the lingual frenulum?',
-						                    content:
-						                        'In infants, surgery is usually indicated when the lingual frenulum restricts the tongue’s movement and compromises breastfeeding. A lactation consultant may also be indicated for consultation. In older children and adults, the indication is made when the tongue is visibly restricted, is unable to adequately reach the palate, or when possible distortions in speech are caused by limitation of the elevation of the tongue tip (especially in producing the sound of the “L” and “R”) that could not be corrected in speech therapy.',
-						                },
-						                {
-						                    title: 'What can happen with an infant if not treated?',
-						                    content:
-						                        'Many people with tongue-tie suffer the consequences without knowing the cause. There are infants who have changes in the feeding cycle, causing stress for the infant and for the mother; there are also children with difficulties in chewing, children and adults with speech problems affecting communication, social relationships and professional development. With the chronic oral rest posture of the tongue in the floor of the mouth, many of the Orofacial Myofunctional Disorders (OMDs) enumerated may result.',
-						                },
-						            ],
-						        },
-						        { id: 6, mainTitle: 'Lip Tie', mainContent: '' },
-						        { id: 7, mainTitle: 'Atypical Swallow', mainContent: '' },
-						        {
-						            id: 8,
-						            mainTitle: 'Habits',
-						            mainContent:
-						                'Depending on the child’s facial features, the intensity, frequency and the duration of oral habits may cause changes in facial growth, alteration of tooth position (anterior open bite), problems in the orofacial muscles, impairment of breathing functions, chewing, swallowing, and may also lead to slurred speech, such as an anterior lisp (placing the tongue between the teeth). Pacifiers, thumb sucking and finger sucking habits force the tongue into a low position that pushes it against the teeth. The pacifier soothes the baby, because it satisfies the need to suck, but its use can be eliminated as soon as possible.',
-						        },
-						        {
-						            id: 9,
-						            mainTitle: 'Chewing Disorders',
-						            mainContent:
-						                'Chewing disorders include chewing with the mouth open, excessive chewing of gum, avoidance of foods with certain textures or preference for soft or pureed food, pain or discomfort while chewing, abnormal jaw movements and exclusive chewing on one side.  By chewing only on one side, only the muscles of one side of the face are emphasized. This can cause a facial asymmetry over time. In addition, the bite can be altered and the temporomandibular joint (TMJ, the joint that connects the jaw to the skull and allows the mouth to open and close) on the opposite side of mastication, may suffer an overload.',
-						        },
-						        { id: 10, mainTitle: 'Facial Muscle Dysfunction', mainContent: '' },
-						        { id: 11, mainTitle: 'Hypotonic Masseters', mainContent: '' },
-						        {
-						            id: 12,
-						            mainTitle: 'Speech Misarticulations',
-						            mainContent:
-						                'A person with abnormal oral muscle patterns may suffer a lisp or have difficulty in articulating sounds.  A lisp is a distortion of speech, characterized by placing the tongue between the front teeth during the production of the sounds /s/ and /z/. If muscles in the tongue and lips are incorrectly postured, this can prevent a person from forming sounds of normal speech. Improper oral muscle function may additionally lead to TMJ dysfunction, headaches, stomach distress (from swallowing air), airway obstruction, and other health challenges.',
-						        },
-						        {
-						            id: 13,
-						            mainTitle: 'Tonsils/Adenoids',
-						            mainContent:
-						                'Enlarged tonsils can block the airway, causing an improper positioning of the tongue.',
-						        },
-						        {
-						            id: 14,
-						            mainTitle: 'Temporomandibular Disorder (TMD)',
-						            mainContent:
-						                'The term temporomandibular dysfunction (TMD) is used to define some problems that can affect the temporomandibular joint (TMJ), as well as muscles and structures involved in chewing. TMD may be related to various factors such as dental changes (loss or wear of the teeth, poorly fitting dentures), unilateral chewing, mouth breathing, lesions due to trauma or degeneration of the TMJ, muscle strains caused by psychological factors (stress and anxiety) and poor habits (nail biting, biting objects or food too hard, resting a hand on the chin, or clenching teeth during sleep).  The main signs and symptoms include pain around the TMJ  (it may radiate to the head and neck), along with earache, tinnitus, ear fullness, sounds when opening or closing the mouth (popping or other noises in the TMJ), pain or difficulties when opening the mouth, and pain when moving the jaw and the muscles involved in chewing.',
-						        },
-						        {
-						            id: 15,
-						            mainTitle: 'Sleep Disorders',
-						            mainContent:
-						                'Recent research has shown that myofunctional therapy may reduce the symptoms of sleep disordered breathing (such as snoring), and ameliorate mild to moderate OSA (obstructive sleep apnea). When functioning and used properly, the muscles of the tongue, throat, and face, can reduce obstruction to the airway.  Sleep apnea is a potentially serious sleep disorder in which breathing repeatedly stops and starts. You may have sleep apnea if you snore loudly and you feel tired even after a full night’s sleep. There are two main types of sleep apnea: Obstructive sleep apnea, the more common form that occurs when throat muscles relax. Obstructive Sleep Apnea Syndrome is defined as an obstruction of the airflow channel during sleep. Central sleep apnea, which occurs when your brain doesn’t send proper signals to the muscles that control breathing.',
-						        },
-						        { id: 16, mainTitle: 'Bruxism and Clenching', mainContent: '' },
-						        { id: 17, mainTitle: 'Low Tongue Rest Position', mainContent: '' },
-						        {
-						            id: 18,
-						            mainTitle: 'Snoring',
-						            mainContent:
-						                'Snoring is defined as partial obstruction of the upper airways causing noise and vibration produced by some muscles of the mouth and throat during sleep .  Snoring contributes to the emergence of obstructive sleep apnea due to the constant vibration, the muscles of the mouth and throat become larger, and may bring about changes in size, width and thickness. This may contribute to the appearance of total or partial obstruction of breathing during sleep.',
-						        },
-						        {
-						            id: 19,
-						            mainTitle: 'Malocclusion',
-						            mainContent:
-						                'An OMD may lead to an abnormal bite – the improper alignment between the upper and lower teeth known as malocclusion. This problem may lead to difficulties in biting, chewing, swallowing, and digesting of food.',
-						        },
-						        { id: 20, mainTitle: 'Cavities and Gum Disease', mainContent: '' },
-						        { id: 21, mainTitle: 'Changes in Saliva', mainContent: '' },
-						        { id: 22, mainTitle: 'Restricted Maxilla/High Palate', mainContent: '' },
-						        { id: 23, mainTitle: 'Tongue Scalloping', mainContent: '' },
-						        { id: 24, mainTitle: 'Craniofacial Dysfunction', mainContent: '' },
-						        { id: 25, mainTitle: 'Allergic Shiners/Venous Pooling', mainContent: '' },
-						        { id: 26, mainTitle: 'Eustachian Tubes Dysfunctions', mainContent: '' },
-						        {
-						            id: 27,
-						            mainTitle: 'Esthetic Changes',
-						            mainContent:
-						                'Often the most obvious symptom of incorrect oral posture involves the muscles of the face. A dull, sluggish appearance and full, weak lips develop when muscles are not in proper balance.  Facial expressions and habits that are directly linked to the function of the muscles of the face can result in wrinkles and marks.  Wrinkles may be the result of inadequate postures, habits and repetitive movements, when chewing, swallowing, breathing and in speech. Furthermore, the wrinkles may be influenced by the exaggerated strain of the facial muscles.  When the functions of chewing, swallowing, and breathing are working adequately and habits are eliminated, with the manipulation of the facial muscles, one may achieve a significant improvement in facial aesthetics with facial rejuvenation and smoothing of wrinkles.  Cosmetic improvements can help restore confidence and self-esteem.',
-						        },
-						        { id: 28, mainTitle: 'Macroglossia', mainContent: '' },
-						        { id: 29, mainTitle: 'Abnormal Breathing', mainContent: '' },
-						        { id: 30, mainTitle: 'Tinnitus', mainContent: '' },
-						        {
-						            id: 31,
-						            mainTitle: 'Infant Feeding Problems',
-						            mainContent:
-						                'Feeding a child stimulates the orofacial muscles and this promotes the growth of the face. In the same way, proper suction and chewing prevents dental alterations and difficulties when structures such as the lips and tongue are moving. This is fundamental in the production of speech sounds as well.  The preference for soft foods may be related to the reduction of the strength of the muscles of mastication (chewing) and also because of enlarged tonsils. Some children prefer foods with such consistency, as they would not need to chew much or at all. Feeding early on with different consistencies may stimulate the strength of the orofacial muscles and enhance harmonious development of the face.',
-						        },
-						        { id: 32, mainTitle: 'Forward Head Posture', mainContent: '' },
-						    ],
-						}"
-                        class="mx-auto min-h-[16rem] w-full max-w-3xl space-y-4"
-                    >
-                        <template
-                            x-for="{ id, mainTitle, mainContent, sections } in disorders"
-                            :key="id"
-                        >
-                            <div
-                                x-data="{
-								    get expanded() {
-								        return this.active === this.id
-								    },
-								    set expanded(value) {
-								        this.active = value ? this.id : null
-								    },
-								}"
-                                role="region"
-                                class="rounded-lg bg-white shadow"
-                            >
-                                <h2>
-                                    <button
-                                        type="button"
-                                        x-on:click="expanded = !expanded"
-                                        :aria-expanded="expanded"
-                                        class="flex w-full items-center justify-between px-6 py-4 text-xl font-bold"
-                                    >
-                                        <span x-text="mainTitle"></span>
-                                        <span x-show="expanded" aria-hidden="true" class="ml-4">
-                                            −
-                                        </span>
-                                        <span x-show="!expanded" aria-hidden="true" class="ml-4">
-                                            +
-                                        </span>
-                                    </button>
-                                </h2>
-
-                                <div x-show="expanded" x-collapse>
-                                    <img
-                                        :src="`./images/disorders/${id}.png`"
-                                        :alt="`${mainTitle} before after untreated`"
-                                    />
-                                    <!-- Display the main content -->
-                                    <div
-                                        x-text="mainContent"
-                                        class="mt-3 px-6 pb-4 text-lg leading-snug"
-                                    ></div>
-                                    <!-- Loop through sections array -->
-                                    <template x-if="sections">
-                                        <template
-                                            x-for="(section, index) in sections"
-                                            :key="id + '-' + index"
-                                        >
-                                            <div>
-                                                <!-- Subtitle for each section -->
-                                                <h3
-                                                    class="mt-3 px-6 text-lg font-extrabold"
-                                                    x-text="section.title"
-                                                ></h3>
-                                                <!-- Content for each section -->
-                                                <h3
-                                                    x-text="section.content"
-                                                    class="px-6 pb-4 text-lg leading-snug"
-                                                ></h3>
-                                            </div>
-                                        </template>
-                                    </template>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-            </div>
-            <footer class="mt-11 min-w-full rounded p-4">
-                <div
-                    class="container mx-auto flex flex-col items-center justify-center text-center"
-                >
-                    <p class="mb-2 text-sm text-gray-600">
-                        The content on this website is for educational and informational purposes
-                        only and should not be used as medical advice, diagnosis, or treatment.
-                    </p>
-                    <p class="text-xs text-gray-500">
-                        © 2024 OMT Health, Inc. All rights reserved.
-                    </p>
-                </div>
-            </footer>
+            href="#home"
+          >
+            Home
+          </a>
+          <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#meetem' }" href="#meetem">Meet Emily</a>
+          <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#omt' }" href="#omt">What is OMT</a>
+          <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#faq' }" href="#faq">FAQs</a>
+          <button @click="scrollToElement('contact')" class="">Contact</button>
+        </nav>
+        <!-- Mobile Menu Button -->
+        <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" @click.outside="mobileMenuIsOpen = false" :aria-expanded="mobileMenuIsOpen" type="button" class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-300" aria-label="mobile menu" aria-controls="mobileMenu">
+          <svg x-cloak x-show="!mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg x-cloak x-show="mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <!-- Mobile Menu -->
+        <nav x-cloak x-show="mobileMenuIsOpen" x-transition:enter="transition motion-reduce:transition-none ease-out duration-300" x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition motion-reduce:transition-none ease-out duration-300" x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" id="mobileMenu" class="fixed inset-x-0 top-0 z-10 flex max-h-svh flex-col items-center divide-y overflow-y-auto rounded-b-xl border-b border-omtgray bg-gray-100 px-6 pb-6 pt-20 text-4xl md:hidden">
+          <a href="#home">Home</a>
+          <a href="#meetem">Meet Emily</a>
+          <a href="#omt">What is OMT</a>
+          <a href="https://omthealth.janeapp.com/">Patient Portal</a>
+          <a href="https://patients.tonguethrust.com/">Patient Videos</a>
+          <a href="#faq">FAQs</a>
+          <button @click="scrollToElement('contact')" class="">Contact</button>
+        </nav>
+      </header>
+      <div x-data="{}" class="flex w-full flex-grow flex-col items-center px-5 text-justify leading-normal">
+        <div x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms class="flex w-full flex-grow flex-col items-center justify-items-center">
+          <!-- home -->
+          <section class="flex flex-col items-center">
+            <p class="">Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
+            <br />
+            <p class="mb-1 mt-5">“Myo” can help you:</p>
+            <ul>
+              <li>
+                <strong>STOP</strong>
+                a tongue thrust habit.
+              </li>
+              <li>
+                <strong>START</strong>
+                breathing through your nose instead of your mouth.
+              </li>
+              <li>
+                <strong>QUIT</strong>
+                thumb-sucking, nail-biting, lip/cheek-chewing or other poor habits.
+              </li>
+              <li>
+                <strong>OVERCOME</strong>
+                unsightly manners of eating and drinking.
+              </li>
+              <li>
+                <strong>IMPROVE</strong>
+                head-neck-body posture.
+              </li>
+              <li>
+                <strong>PREVENT</strong>
+                or correct Long Face Syndrome.
+              </li>
+              <li>
+                <strong>ESTABLISH</strong>
+                a harmonious oral environment.
+              </li>
+              <li>
+                <strong>BETTER DEAL</strong>
+                with issues such as speech problems, sleep apnea, snoring, digestion, clenching/grinding habits and TMJ disorders.
+              </li>
+            </ul>
+            <img class="mt-8 h-[300px] rounded-md" src="./images/omt/rocks.png" alt="balanced rocks" />
+          </section>
+          <p id="contact" class="mb-6 mt-8">Do your face, mouth, and mannerisms signal a myofunctional disorder?</p>
+          <p class="text-xl">Contact OMT Health:</p>
+          <div class="flex flex-row justify-between gap-x-3">
+            <a href="tel:+18057954995" class="text-xl">(805) 795-4995</a>
+            <p>|</p>
+            <a href="mailto:myo@omthealth.com" class="text-xl">myo@omthealth.com</a>
+          </div>
+          <p class="mt-9 text-xl">MYOFUNCTIONAL THERAPY IN-PERSON OR ONLINE</p>
+          <p class="mt-3 text-lg">2660 Townsgate Road, Suite 450, Westlake Village, CA 91361</p>
+          <img class="mb-8 h-48 w-full rounded" src="./images/omt/village.jpeg" alt="westlake village" />
+          <p class="text-lg">102 S. Catalina St., Ventura, CA 93001</p>
+          <img class="mb-8 h-48 w-full rounded" src="./images/omt/venturac.png" alt="ventura" />
         </div>
-    </body>
+        <div x-cloak x-show="$store.route.page === '#meetem'" x-transition.duration.450ms>
+          <!-- meet em -->
+          <article class="mb-11 flex flex-col md:flex-row gap-8">
+            <div class="flex min-h-min md:basis-1/4 flex-col items-stretch justify-start gap-4 overflow-hidden rounded-lg mt-5 md:mt-0">
+              <img src="./images/omt/emily2.png" alt="Emily" class="max-h-70 rounded-lg object-contain" />
+              <img src="./images/omt/myo-cert.jpeg" alt="myo certification badge" class="max-h-70 rounded-lg object-contain" />
+            </div>
+            <div class="md:basis-3/4">
+              <p>Emily was born and raised in Southern California. She completed her undergraduate studies at UC Davis and later received her Master’s in Occupational Therapy from Nova Southeastern University in Fort Lauderdale, Florida. She holds National Board Certification through the NBCOT and is also a Certified Low Vision Therapist. Emily started off her career working at the US Department of Veterans Affairs, treating blind and low vision veterans as old as one hundred two. Emily later transitioned to working in the school setting, providing occupational therapy to students with special needs ranging from three years old and up.</p>
+              <br />
+              <p>Emily fell into myofunctional therapy after being a patient herself, treated by the esteemed Joy Moeller. She is fortunate to have experienced therapy firsthand from one of the top therapists in the field. Emily is forever grateful for the guidance and support Joy has given her. With Joy’s encouragement, along with a newfound passion for myo after experiencing how life changing it can be, Emily went on to become a Certified Orofacial Myofunctional Therapist through the Academy of Orofacial Myofunctional Therapy. She continued her education through classes and being personally trained by renowned myofunctional therapist and pioneer in the field, Barbara J. Greene. Emily has since become Barbara’s associate, delivering services using her signature methods and protocols. Emily currently works alongside Barbara in her in Ventura office. She also runs her own practice in Westlake Village.</p>
+              <br />
+              <p>Emily has found happiness in being able to work with patients across the lifespan and seeing transformative results regardless of age.</p>
+            </div>
+          </article>
+        </div>
+        <div x-cloak x-show="$store.route.page === '#faq'" x-transition.duration.450ms class="">
+          <!-- faq -->
+          <section>
+            <h3 class="font-bold">How long does a myofunctional therapy program take?</h3>
+            <p>A traditional program takes place over a twelve month period, although treatment length may vary. There are three phases to therapy: the intensive phase, the habituation phase and the maintenance phase. Initially, visits are held weekly but move to monthly intervals as therapy progresses. For success in this therapy, consistent exercise every day is necessary until the patient has corrected their improper muscle pattern. It also requires commitment by the patient, family, and time. It is possible that your myofunctional therapy journey will include referrals to other professionals such as dentists, doctors, orthodontists, ENTs, sleep specialists, and osteopaths. These factors may change the length of your program, however, a holistic approach is essential for successful treatment. Often, one of these professionals will refer you for myofunctional therapy. If a thumb or finger sucking habit is present, it must be addressed and eliminated before treatment can commence. A habit elimination program can vary but might take up to thirty days.</p>
+
+            <h3 class="mt-8 font-bold">What does myofunctional therapy treatment look like?</h3>
+            <p class="">You will be given a therapy kit at the beginning of your program. Each visit you will receive a list of exercises to perform, some of which might include items from your kit, though many do not require extra materials. You are expected to complete exercises two times a day, with three times a day being encouraged. Orofacial myofunctional therapy is painless and the exercises are relatively simple.</p>
+
+            <h3 class="mt-8 font-bold">Should myofunctional therapy occur before or after orthodontic treatment?</h3>
+            <p>Orthodontic and Orofacial Myofunctional Therapy are closely related, with each directly impacting the other. Each case must be analyzed and discussed by the professionals involved. Treatment might be indicated before, during, or after orthodontics. Specialists in Orofacial Myofunctional Therapy promote muscle and orofacial function balance, improving tongue posture and thus aiding in maintaining orthodontic stability, helping to diminish orthodontic relapse after braces are removed.</p>
+
+            <h3 class="mt-8 font-bold">What ages do you treat?</h3>
+            <p>Myofunctional therapy is suitable for everyone from age four upwards, but treatment around the age of seven or eight is ideal as oral habits are less ingrained and easier to change, which can encourage normal dental growth. Motivation and commitment are key to success.</p>
+
+            <h3 class="mt-8 font-bold">Do you take insurance?</h3>
+            <p>To prevent insurers from denying, delaying or dictating the course of your program, OMT Health does not accept insurance. Upon request, a superbill will be provided for you to submit to your insurance company.</p>
+
+            <h3 class="mt-8 font-bold">Do you offer telehealth?</h3>
+            <p>Yes. You have the option of being treated in person or via video conferencing. You can also opt for a combination of both if preferred.</p>
+            <h1 class="mt-8 font-bold">What research is available?</h1>
+            <p>Myofunctional Therapy is a relatively new field that is gaining recognition in the medical community. Research studies support the effectiveness of this discipline. Listed below are links to studies which show the significant impact of myofunctional therapy treatment.</p>
+            <ul>
+              <li class="ml-11 list-disc underline">
+                <a href="https://aomtinfo.org/wp-content/u[ploads/2015/03/AOMT-OMD-Dx-Rx-Tx-Px-Bibliography_4.21.14_5pm.pdf" target="_blank">Orofacial Myofunctional Disorders (OMDs): Dx, Rx, Tx, & Px Selected Bibliography</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://tonguethrust.com/learning-center/articles/" target="_blank">Orofacial Development & Myofunctional Therapy</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://aomtinfo.org/sleep/" target="_blank">AOMT Sleep Studies</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://aomtinfo.org/orthodontics/" target="_blank">AOMT Orthodontics Studies</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://aomtinfo.org/top-studies/" target="_blank">AOMT Top Studies</a>
+              </li>
+            </ul>
+            <p class="mt-8 font-bold">You can find more information below:</p>
+            <ul>
+              <li class="ml-11 list-disc underline">
+                <a href="https://tonguethrust.com/learning-center/video/" target="_blank">Watch educational videos</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://tonguethrust.com/myofunctional-factors/" target="_blank">Learn about myofunctional factors</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://tonguethrust.com/about/gallery/" target="_blank">Before and after</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://is.gd/yf1YnZ" target="_blank">Tongue-fascia connection</a>
+              </li>
+              <li class="ml-11 list-disc underline">
+                <a href="https://tonguethrust.com/learning-center/links/" target="_blank">Explore additional resources</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div x-cloak x-show="$store.route.page === '#omt'" x-transition.duration.450ms class="">
+          <!-- omt -->
+          <p>Orofacial Myofunctional Therapy (OMT), more commonly referred to as myofunctional therapy, is related to the study, research, prevention, evaluation, diagnosis, and treatment of functional and structural alterations in the region of the mouth (oro), face (facial), and regions of the neck (oropharyngeal area). The purpose of therapy is to assist the normalization of the developing, or developed, craniofacial structures and function through neurological re-education exercises.</p>
+          <br />
+          <p>OMT treats Orofacial Myofunctional Disorders (OMDs), which are disorders of the muscles and functions of the face and mouth. An OMD is a pathological condition created by disruption in the functions of the stomatognathic system, primarily functions related to chewing, breathing, and swallowing. OMDs may affect, directly and/or indirectly: sleep apnea, facial skeletal growth and development, breathing, chewing, swallowing, speech, occlusion, posture, temporomandibular joint movement, oral hygiene, stability of orthodontic treatment, facial esthetics, restricted facial and lingual frenum, forward head posture, incorrect oral habits and more.</p>
+          <br />
+          <p>There are 32 identified Orofacial Myofunctional Disorders. Click on each condition to learn more about the disorder, how myofunctional therapy helps, as well as pictures of what can happen if left untreated.</p>
+
+          <div
+            x-data="{
+              active: null,
+              disorders: [
+                  {
+                    id: 1,
+                    mainTitle: 'Mouth Breathing',
+                    mainContent:
+                      'Mouth breathing refers to breathing performed predominantly by the mouth. In this way of breathing, the individual does not use, or uses very little, the nose to inhale and exhale the air.  The person may have one or more of the following characteristics: nasal congestion, open mouth at rest; parched lips, lip color change, appearance of a large tongue that may be recessed and projected forward; long face syndrome; forward head posture; dark circles under the eyes, sagging cheeks, wheezing, and snoring. In such cases it is recommended that an otolaryngologist (ENT) and/or allergist be consulted.  The most common causes of mouth breathing are: allergic rhinitis, sinusitis, bronchitis, enlarged adenoids; enlarged tonsils; weakness or low tone of facial muscles that may lead to open mouth rest posture, habits such as thumb sucking, tumors in the region of the nose, enlarged turbinates, and nose fractures, amongst others.  Mouth breathing can cause damage in several aspects, such as the mouth’s and face’s structures and their function, including sleep, feeding, learning, hearing and speech.',
+                    sections: [
+                      {
+                        title: 'How can mouth breathing cause changes to the structure of the mouth and the face?',
+                        content:
+                          'Keeping an open mouth posture can cause: dry and chapped lips, short and fast breathing; diminished strength of the muscles of the lips, cheeks, jaw and tongue; a lowered and more anterior oral rest posture of the tongue, leading to changes in aesthetics and position of teeth/occlusion (improper fit of the teeth); elongated face, retruded mandible, and palate (“roof of the mouth”) becoming more narrow and or deep.',
+                      },
+                      {
+                        title: 'How can mouth breathing affect functions related to the mouth and face?',
+                        content:
+                          'Mouth breathing leads to chewing food with lips apart, which becomes faster, noisier and less efficient than with lips closed. This can lead to greater digestive problems and potential for choking due to the poor coordination between breathing, chewing, and an increase in the swallowing of air. It’s hard to breathe through the mouth when the mouth is full, thus an individual will need to choose whether to chew or to breathe. In the process of swallowing, one may also notice changes such as: anterior projection of the tongue, noise, contraction of muscles that wrap around the mouth and movements of the head. There may also be excessive production of saliva and an anterior lisp: which is a distortion of speech characterized by placing the tongue between the front teeth during sound production of /s/ and /z/.',
+                      },
+                      {
+                        title: 'What are key issues that may be caused by mouth breathing during sleep?',
+                        content:
+                          'When sleeping with the mouth open, a person may have some of these characteristics: restless sleep, snoring, headaches, drooling on the pillow, thirst when waking up, morning sleepiness, sleep apnea (breathing interruptions during sleep), and decreased oxygen saturation in the blood.',
+                      },
+                      {
+                        title: 'What are disadvantages that mouth breathing may contribute with regards to feeding and body weight?',
+                        content:
+                          'Mouth breathers may have poor appetite, lower strength for chewing and swallowing difficulties. Thus they may prefer softer foods and the use of liquid to assist feeding. The feeding of mouth breathers may also be impaired because of decreased olfaction (smell) and taste (taste). As a result of changes in chewing, smell, and taste, the individual may have decreased appetite, gastric changes, constant thirst, gagging, pallor, anorexia, and weight loss with less physical improving or, conversely, obesity.',
+                      },
+                      {
+                        title: 'What are the main disadvantages to learning caused by mouth breathing?',
+                        content:
+                          'Sleep disturbances can generate agitation, anxiety, impatience, decreased levels of alertness, impulsiveness and discouragement. All of these changes can cause difficulties with attention, concentration, memory problems, and subsequent learning difficulties in children. During the critical periods of a child’s development, mouth breathing can be more detrimental to learning.',
+                      },
+                      {
+                        title: 'What are the main disadvantages to hearing and speech caused by mouth breathing?',
+                        content:
+                          'It is common in mouth breathing children to have more colds, infections in the nose, throat and chronic ear infections. Ear infection may lead to hearing loss, speech problems, language delays and vestibular issues. It is important to pay close attention to children in such cases: listen well to determine if they have difficulty hearing in the presence of noise; if they are unable to answer questions or follow direction, or could be considered inattentive. Most common changes are hoarseness in voice. This is because of the constantly open mouth leading to a drying out of all the structures that produce the voice and because the muscles are contracted for a long time, they may also appear to frequently have a cold and a runny nose.',
+                      },
+                      {
+                        title: 'What are the main disadvantages of mouth breathing regarding body posture?',
+                        content:
+                          'One major alteration is a change in the head’s postural position. The head will go forward seeking a larger space to breathe better, as often the tongue is resting in the floor of the mouth. We can also find other changes in the body caused by mouth breathing, as the abdominal muscles are weakened and stretched; dark circles with asymmetric positioning of the eyes, tired eyes, and shoulders that may come forward and compresses the abdomen.',
+                      },
+                      {
+                        title: 'Which kind of specialist in orofacial myofunctional therapy should a mouth breather seek?',
+                        content:
+                          'An individual who breathes through the mouth can seek an Orofacial Myofunctional Therapy Specialist to assist in the treatment of mouth breathing, as any general Myofunctional Therapist is trained to deal with these cases, but some seek additional training in respiratory education techniques that may be helpful in treatment. Orofacial Myofunctional Therapy is commenced only after evaluation of the cause. It is advisable to also work within an allied team, with an otholaryngologyst/ ENT, a breathing specialist and /or an allergist as well.',
+                      },
+                    ],
+                  },
+                  { id: 2, mainTitle: 'Open Mouth Posture', mainContent: '' },
+                  {
+                    id: 3,
+                    mainTitle: 'Anterior Tongue Thrust',
+                    mainContent:
+                      'When a person swallows incorrectly, the tip and/or sides of the tongue press against or spread between the teeth. This is commonly called a tongue thrust. Constant pressure from resting or incorrectly thrusting the tongue away from the hard palate may push teeth out of place. That pressure may later prevent teeth from erupting (breaking through the gum). The constant pressure of the tongue against or between the teeth will not allow the teeth to bite together. This is known as an open bite.  An improper alignment or malocclusion between the upper and lower teeth can lead to difficulties in biting and chewing food.',
+                  },
+                  {
+                    id: 4,
+                    mainTitle: 'Bilateral Tongue Thrust',
+                    mainContent:
+                      'When a person swallows incorrectly, the tip and/or sides of the tongue press against or spread between the teeth. This is commonly called a tongue thrust. Constant pressure from resting or incorrectly thrusting the tongue away from the hard palate may push teeth out of place. That pressure may later prevent teeth from erupting (breaking through the gum). The constant pressure of the tongue against or between the teeth will not allow the teeth to bite together. This is known as an open bite.  An improper alignment or malocclusion between the upper and lower teeth can lead to difficulties in biting and chewing food.',
+                  },
+                  {
+                    id: 5,
+                    mainTitle: 'Tongue Tie',
+                    mainContent:
+                      'Tongue-tie, also known as ankyloglossia, is a term used to characterize a common condition that often goes undetected. It occurs during pregnancy when a small portion of tissue that should disappear during the infant’s development remains at the bottom of the tongue, restricting its movement. When an infant is born with tongue-tie, it is important to research other family members, since this change has a genetic influence. A specialist in Orofacial Myofunctional Therapy should be well suited to detect a tongue-tie since they should know about the lingual frenulum and also the normal way the newborn sucks.  There are varying degrees of tongue-tie.',
+                    sections: [
+                      {
+                        title: 'How and when should tongue-tie be treated?',
+                        content:
+                          'When the tongue cannot perform all the necessary movements and thus jeopardizes the way of sucking, swallowing, chewing or talking, a small surgery or frenotomy in the tongue is indicated. The “cut” of the frenum in infants is a simple procedure done with scissors, scalpel, or laser and anesthetic gel, which lasts about five minutes. In older children and adults the most common procedure is the frenectomy (partial removal of the lingual frenulum).',
+                      },
+                      {
+                        title: 'When is a surgical procedure indicated to release the lingual frenulum?',
+                        content:
+                          'In infants, surgery is usually indicated when the lingual frenulum restricts the tongue’s movement and compromises breastfeeding. A lactation consultant may also be indicated for consultation. In older children and adults, the indication is made when the tongue is visibly restricted, is unable to adequately reach the palate, or when possible distortions in speech are caused by limitation of the elevation of the tongue tip (especially in producing the sound of the “L” and “R”) that could not be corrected in speech therapy.',
+                      },
+                      {
+                        title: 'What can happen with an infant if not treated?',
+                        content:
+                          'Many people with tongue-tie suffer the consequences without knowing the cause. There are infants who have changes in the feeding cycle, causing stress for the infant and for the mother; there are also children with difficulties in chewing, children and adults with speech problems affecting communication, social relationships and professional development. With the chronic oral rest posture of the tongue in the floor of the mouth, many of the Orofacial Myofunctional Disorders (OMDs) enumerated may result.',
+                      },
+                    ],
+                  },
+                  { id: 6, mainTitle: 'Lip Tie', mainContent: '' },
+                  { id: 7, mainTitle: 'Atypical Swallow', mainContent: '' },
+                  {
+                    id: 8,
+                    mainTitle: 'Habits',
+                    mainContent:
+                      'Depending on the child’s facial features, the intensity, frequency and the duration of oral habits may cause changes in facial growth, alteration of tooth position (anterior open bite), problems in the orofacial muscles, impairment of breathing functions, chewing, swallowing, and may also lead to slurred speech, such as an anterior lisp (placing the tongue between the teeth). Pacifiers, thumb sucking and finger sucking habits force the tongue into a low position that pushes it against the teeth. The pacifier soothes the baby, because it satisfies the need to suck, but its use can be eliminated as soon as possible.',
+                  },
+                  {
+                    id: 9,
+                    mainTitle: 'Chewing Disorders',
+                    mainContent:
+                      'Chewing disorders include chewing with the mouth open, excessive chewing of gum, avoidance of foods with certain textures or preference for soft or pureed food, pain or discomfort while chewing, abnormal jaw movements and exclusive chewing on one side.  By chewing only on one side, only the muscles of one side of the face are emphasized. This can cause a facial asymmetry over time. In addition, the bite can be altered and the temporomandibular joint (TMJ, the joint that connects the jaw to the skull and allows the mouth to open and close) on the opposite side of mastication, may suffer an overload.',
+                  },
+                  { id: 10, mainTitle: 'Facial Muscle Dysfunction', mainContent: '' },
+                  { id: 11, mainTitle: 'Hypotonic Masseters', mainContent: '' },
+                  {
+                    id: 12,
+                    mainTitle: 'Speech Misarticulations',
+                    mainContent:
+                      'A person with abnormal oral muscle patterns may suffer a lisp or have difficulty in articulating sounds.  A lisp is a distortion of speech, characterized by placing the tongue between the front teeth during the production of the sounds /s/ and /z/. If muscles in the tongue and lips are incorrectly postured, this can prevent a person from forming sounds of normal speech. Improper oral muscle function may additionally lead to TMJ dysfunction, headaches, stomach distress (from swallowing air), airway obstruction, and other health challenges.',
+                  },
+                  {
+                    id: 13,
+                    mainTitle: 'Tonsils/Adenoids',
+                    mainContent:
+                      'Enlarged tonsils can block the airway, causing an improper positioning of the tongue.',
+                  },
+                  {
+                    id: 14,
+                    mainTitle: 'Temporomandibular Disorder (TMD)',
+                    mainContent:
+                      'The term temporomandibular dysfunction (TMD) is used to define some problems that can affect the temporomandibular joint (TMJ), as well as muscles and structures involved in chewing. TMD may be related to various factors such as dental changes (loss or wear of the teeth, poorly fitting dentures), unilateral chewing, mouth breathing, lesions due to trauma or degeneration of the TMJ, muscle strains caused by psychological factors (stress and anxiety) and poor habits (nail biting, biting objects or food too hard, resting a hand on the chin, or clenching teeth during sleep).  The main signs and symptoms include pain around the TMJ  (it may radiate to the head and neck), along with earache, tinnitus, ear fullness, sounds when opening or closing the mouth (popping or other noises in the TMJ), pain or difficulties when opening the mouth, and pain when moving the jaw and the muscles involved in chewing.',
+                  },
+                  {
+                    id: 15,
+                    mainTitle: 'Sleep Disorders',
+                    mainContent:
+                      'Recent research has shown that myofunctional therapy may reduce the symptoms of sleep disordered breathing (such as snoring), and ameliorate mild to moderate OSA (obstructive sleep apnea). When functioning and used properly, the muscles of the tongue, throat, and face, can reduce obstruction to the airway.  Sleep apnea is a potentially serious sleep disorder in which breathing repeatedly stops and starts. You may have sleep apnea if you snore loudly and you feel tired even after a full night’s sleep. There are two main types of sleep apnea: Obstructive sleep apnea, the more common form that occurs when throat muscles relax. Obstructive Sleep Apnea Syndrome is defined as an obstruction of the airflow channel during sleep. Central sleep apnea, which occurs when your brain doesn’t send proper signals to the muscles that control breathing.',
+                  },
+                  { id: 16, mainTitle: 'Bruxism and Clenching', mainContent: '' },
+                  { id: 17, mainTitle: 'Low Tongue Rest Position', mainContent: '' },
+                  {
+                    id: 18,
+                    mainTitle: 'Snoring',
+                    mainContent:
+                      'Snoring is defined as partial obstruction of the upper airways causing noise and vibration produced by some muscles of the mouth and throat during sleep .  Snoring contributes to the emergence of obstructive sleep apnea due to the constant vibration, the muscles of the mouth and throat become larger, and may bring about changes in size, width and thickness. This may contribute to the appearance of total or partial obstruction of breathing during sleep.',
+                  },
+                  {
+                    id: 19,
+                    mainTitle: 'Malocclusion',
+                    mainContent:
+                      'An OMD may lead to an abnormal bite – the improper alignment between the upper and lower teeth known as malocclusion. This problem may lead to difficulties in biting, chewing, swallowing, and digesting of food.',
+                  },
+                  { id: 20, mainTitle: 'Cavities and Gum Disease', mainContent: '' },
+                  { id: 21, mainTitle: 'Changes in Saliva', mainContent: '' },
+                  { id: 22, mainTitle: 'Restricted Maxilla/High Palate', mainContent: '' },
+                  { id: 23, mainTitle: 'Tongue Scalloping', mainContent: '' },
+                  { id: 24, mainTitle: 'Craniofacial Dysfunction', mainContent: '' },
+                  { id: 25, mainTitle: 'Allergic Shiners/Venous Pooling', mainContent: '' },
+                  { id: 26, mainTitle: 'Eustachian Tubes Dysfunctions', mainContent: '' },
+                  {
+                    id: 27,
+                    mainTitle: 'Esthetic Changes',
+                    mainContent:
+                      'Often the most obvious symptom of incorrect oral posture involves the muscles of the face. A dull, sluggish appearance and full, weak lips develop when muscles are not in proper balance.  Facial expressions and habits that are directly linked to the function of the muscles of the face can result in wrinkles and marks.  Wrinkles may be the result of inadequate postures, habits and repetitive movements, when chewing, swallowing, breathing and in speech. Furthermore, the wrinkles may be influenced by the exaggerated strain of the facial muscles.  When the functions of chewing, swallowing, and breathing are working adequately and habits are eliminated, with the manipulation of the facial muscles, one may achieve a significant improvement in facial aesthetics with facial rejuvenation and smoothing of wrinkles.  Cosmetic improvements can help restore confidence and self-esteem.',
+                  },
+                  { id: 28, mainTitle: 'Macroglossia', mainContent: '' },
+                  { id: 29, mainTitle: 'Abnormal Breathing', mainContent: '' },
+                  { id: 30, mainTitle: 'Tinnitus', mainContent: '' },
+                  {
+                    id: 31,
+                    mainTitle: 'Infant Feeding Problems',
+                    mainContent:
+                      'Feeding a child stimulates the orofacial muscles and this promotes the growth of the face. In the same way, proper suction and chewing prevents dental alterations and difficulties when structures such as the lips and tongue are moving. This is fundamental in the production of speech sounds as well.  The preference for soft foods may be related to the reduction of the strength of the muscles of mastication (chewing) and also because of enlarged tonsils. Some children prefer foods with such consistency, as they would not need to chew much or at all. Feeding early on with different consistencies may stimulate the strength of the orofacial muscles and enhance harmonious development of the face.',
+                  },
+                  { id: 32, mainTitle: 'Forward Head Posture', mainContent: '' },
+              ],
+						}"
+            class="mx-auto min-h-[16rem] w-full max-w-3xl space-y-4"
+          >
+            <template x-for="{ id, mainTitle, mainContent, sections } in disorders" :key="id">
+              <div
+                x-data="{
+                  get expanded() {
+                      return this.active === this.id
+                  },
+                  set expanded(value) {
+                      this.active = value ? this.id : null
+                  },
+								}"
+                role="region"
+                class="rounded-lg bg-white shadow"
+              >
+                <h2>
+                  <button type="button" x-on:click="expanded = !expanded" :aria-expanded="expanded" class="flex w-full items-center justify-between px-6 py-4 text-xl font-bold">
+                    <span x-text="mainTitle"></span>
+                    <span x-show="expanded" aria-hidden="true" class="ml-4">−</span>
+                    <span x-show="!expanded" aria-hidden="true" class="ml-4">+</span>
+                  </button>
+                </h2>
+
+                <div x-show="expanded" x-collapse>
+                  <img :src="`./images/disorders/${id}.png`" :alt="`${mainTitle} before after untreated`" />
+                  <!-- Display the main content -->
+                  <div x-text="mainContent" class="mt-3 px-6 pb-4 text-lg leading-snug"></div>
+                  <!-- Loop through sections array -->
+                  <template x-if="sections">
+                    <template x-for="(section, index) in sections" :key="id + '-' + index">
+                      <div>
+                        <!-- Subtitle for each section -->
+                        <h3 class="mt-3 px-6 text-lg font-extrabold" x-text="section.title"></h3>
+                        <!-- Content for each section -->
+                        <h3 x-text="section.content" class="px-6 pb-4 text-lg leading-snug"></h3>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+      <footer class="mt-11 min-w-full rounded p-4">
+        <div class="container mx-auto flex flex-col items-center justify-center text-center">
+          <p class="mb-2 text-sm text-gray-600">The content on this website is for educational and informational purposes only and should not be used as medical advice, diagnosis, or treatment.</p>
+          <p class="text-xs text-gray-500">© 2024 OMT Health, Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>
 
 <!-- TODO: mobile styling -->
-<!-- TODO: move patient button links to mobile nav -->
 <!-- TODO: cleanup code  -->
