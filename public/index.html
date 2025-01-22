@@ -33,7 +33,7 @@
     </style>
     <title>OMT Health</title>
   </head>
-  <body class="bg-omtbeige font-forum text-base md:text-lg text-slate-700 antialiased">
+  <body class="bg-omtbeige font-forum tracking-tight md:tracking-normal text-sm md:text-lg text-slate-700 antialiased">
     <div class="mx-auto my-16 flex min-h-screen md:max-w-[80%] flex-col items-center justify-center overflow-visible rounded md:border-2 md:border-slate-500 px-8">
       <header
         x-data="{
@@ -57,7 +57,7 @@
         <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://omthealth.janeapp.com/" target="_blank" class="absolute right-0 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient portal</a>
         <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://patients.tonguethrust.com/" target="_blank" class="absolute right-40 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient videos</a>
         <a href="#home" class="">
-          <img class="mx-auto md:mt-16 w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
+          <img class="mx-auto mb-5 md:mt-24 w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
         </a>
         <!-- Desktop Menu -->
         <nav class="mb-14 mt-8 hidden items-center text-2xl md:flex md:justify-around lg:justify-center lg:gap-10">
@@ -101,7 +101,7 @@
             <p class="">Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
             <br />
             <p class="mb-1 mt-5">“Myo” can help you:</p>
-            <ul>
+            <ul class="tracking-tighter md:tracking-normal">
               <li>
                 <strong>STOP</strong>
                 a tongue thrust habit.
@@ -135,32 +135,47 @@
                 with issues such as speech problems, sleep apnea, snoring, digestion, clenching/grinding habits and TMJ disorders.
               </li>
             </ul>
-            <img class="mt-8 h-[300px] rounded-md" src="./images/omt/rocks.png" alt="balanced rocks" />
+            <img class="mt-8 h-[280px] rounded-md" src="./images/omt/rocks.png" alt="balanced rocks" />
           </section>
-          <p id="contact" class="mb-6 mt-8">Do your face, mouth, and mannerisms signal a myofunctional disorder?</p>
-          <p class="text-xl">Contact OMT Health:</p>
-          <div class="flex flex-row justify-between gap-x-3">
-            <a href="tel:+18057954995" class="text-xl">(805) 795-4995</a>
-            <p>|</p>
-            <a href="mailto:myo@omthealth.com" class="text-xl">myo@omthealth.com</a>
+          <div class="flex flex-col items-center">
+            <p id="contact" class="mb-6 mt-8">Do your face, mouth, and mannerisms signal a myofunctional disorder?</p>
+            <p class="font-bold">Contact OMT Health</p>
+            <div class="uppercase flex flex-col items-center md:flex-row leading-4 text-sm md:text-lg">
+              <p class="">Myofunctional Therapy</p>
+              <p class="md:ml-1">In-Person or Online</p>
+            </div>
+            <div class="flex flex-col items-center md:flex-row md:w-2/3 justify-around md:mt-2">
+              <a href="tel:+18057954995" class="mt-2 md:mt-0">(805) 795-4995</a>
+              <p class="hidden md:block">|</p>
+              <a href="mailto:myo@omthealth.com" class="mb-2 md:mb-0">myo@omthealth.com</a>
+            </div>
           </div>
-          <p class="mt-9 text-xl">MYOFUNCTIONAL THERAPY IN-PERSON OR ONLINE</p>
-          <p class="mt-3 text-lg">2660 Townsgate Road, Suite 450, Westlake Village, CA 91361</p>
-          <img class="mb-8 h-48 w-full rounded" src="./images/omt/village.jpeg" alt="westlake village" />
-          <p class="text-lg">102 S. Catalina St., Ventura, CA 93001</p>
-          <img class="mb-8 h-48 w-full rounded" src="./images/omt/venturac.png" alt="ventura" />
+          <div class="flex flex-col items-center w-full md:justify-center md:flex-row md:mt-2 leading-4">
+            <p>2660 Townsgate Road, Suite 450,</p>
+            <p class="md:ml-1">Westlake Village, CA 91361</p>
+          </div>
+          <img class="mb-4 h-48 md:mt-1 w-full rounded object-cover" src="./images/omt/village.jpeg" alt="westlake village" />
+          <div class="flex flex-col items-center w-full md:justify-center md:flex-row leading-4">
+            <p>102 S. Catalina Street,</p>
+            <p class="md:ml-1">Ventura, CA 93001</p>
+          </div>
+          <img class="mb-8 h-48 w-full md:mt-1 rounded object-cover" src="./images/omt/venturac.png" alt="ventura" />
         </div>
         <div x-cloak x-show="$store.route.page === '#meetem'" x-transition.duration.450ms>
           <!-- meet em -->
-          <article class="mb-11 flex flex-col md:flex-row gap-8">
+          <article class="mb-0 flex flex-col md:flex-row gap-8">
             <div class="flex min-h-min md:basis-1/4 flex-col items-stretch justify-start gap-4 overflow-hidden rounded-lg mt-5 md:mt-0">
-              <img src="./images/omt/emily2.png" alt="Emily" class="max-h-70 rounded-lg object-contain" />
-              <img src="./images/omt/myo-cert.jpeg" alt="myo certification badge" class="max-h-70 rounded-lg object-contain" />
+              <img src="./images/omt/emily2.png" alt="Emily" class="max-h-48 md:max-h-60 rounded-lg object-contain" />
+              <img src="./images/omt/myo-cert.jpeg" alt="myo certification badge" class="max-h-40 md:max-h-48 rounded-lg object-contain" />
             </div>
             <div class="md:basis-3/4">
               <p>Emily was born and raised in Southern California. She completed her undergraduate studies at UC Davis and later received her Master’s in Occupational Therapy from Nova Southeastern University in Fort Lauderdale, Florida. She holds National Board Certification through the NBCOT and is also a Certified Low Vision Therapist. Emily started off her career working at the US Department of Veterans Affairs, treating blind and low vision veterans as old as one hundred two. Emily later transitioned to working in the school setting, providing occupational therapy to students with special needs ranging from three years old and up.</p>
               <br />
-              <p>Emily fell into myofunctional therapy after being a patient herself, treated by the esteemed Joy Moeller. She is fortunate to have experienced therapy firsthand from one of the top therapists in the field. Emily is forever grateful for the guidance and support Joy has given her. With Joy’s encouragement, along with a newfound passion for myo after experiencing how life changing it can be, Emily went on to become a Certified Orofacial Myofunctional Therapist through the Academy of Orofacial Myofunctional Therapy. She continued her education taking courses offered by renowned myofunctional therapist and pioneer in the field, Barbara J. Greene. Barbara later hand-selected Emily to personally train her to fill her shoes and take over <a href="http://www.tonguethrust.com" target="_blank">tonguethrust.com</a> once she retires. Emily has since become Barbara's associate, delivering services using her signature methods and protocols. Emily currently works alongside Barbara in her in Ventura office. She also runs her own practice in Westlake Village.</p>
+              <p>
+                Emily fell into myofunctional therapy after being a patient herself, treated by the esteemed Joy Moeller. She is fortunate to have experienced therapy firsthand from one of the top therapists in the field. Emily is forever grateful for the guidance and support Joy has given her. With Joy’s encouragement, along with a newfound passion for myo after experiencing how life changing it can be, Emily went on to become a Certified Orofacial Myofunctional Therapist through the Academy of Orofacial Myofunctional Therapy. She continued her education taking courses offered by renowned myofunctional therapist and pioneer in the field, Barbara J. Greene. Barbara later hand-selected Emily to personally train her to fill her shoes and take over
+                <a href="http://www.tonguethrust.com" target="_blank">tonguethrust.com</a>
+                once she retires. Emily has since become Barbara's associate, delivering services using her signature methods and protocols. Emily currently works alongside Barbara in her in Ventura office. She also runs her own practice in Westlake Village.
+              </p>
               <br />
               <p>Emily has found happiness in being able to work with patients across the lifespan and seeing transformative results regardless of age.</p>
             </div>
@@ -411,7 +426,7 @@
                 class="rounded-lg bg-white shadow"
               >
                 <h2>
-                  <button type="button" x-on:click="expanded = !expanded" :aria-expanded="expanded" class="flex w-full items-center justify-between px-6 py-4 text-xl font-bold">
+                  <button type="button" x-on:click="expanded = !expanded" :aria-expanded="expanded" class="flex w-full items-center text-left justify-between px-6 py-4 text-base md:text-xl font-bold">
                     <span x-text="mainTitle"></span>
                     <span x-show="expanded" aria-hidden="true" class="ml-4">−</span>
                     <span x-show="!expanded" aria-hidden="true" class="ml-4">+</span>
@@ -421,15 +436,15 @@
                 <div x-show="expanded" x-collapse>
                   <img :src="`./images/disorders/${id}.png`" :alt="`${mainTitle} before after untreated`" />
                   <!-- Display the main content -->
-                  <div x-text="mainContent" class="mt-3 px-6 pb-4 text-lg leading-snug"></div>
+                  <div x-text="mainContent" class="mt-3 px-6 pb-4 text-sm md:text-lg leading-snug"></div>
                   <!-- Loop through sections array -->
                   <template x-if="sections">
                     <template x-for="(section, index) in sections" :key="id + '-' + index">
                       <div>
                         <!-- Subtitle for each section -->
-                        <h3 class="mt-3 px-6 text-lg font-extrabold" x-text="section.title"></h3>
+                        <h3 class="mt-3 px-6 text-left text-sm md:text-lg font-extrabold" x-text="section.title"></h3>
                         <!-- Content for each section -->
-                        <h3 x-text="section.content" class="px-6 pb-4 text-lg leading-snug"></h3>
+                        <h3 x-text="section.content" class="px-6 pb-4 text-sm md:text-lg leading-snug"></h3>
                       </div>
                     </template>
                   </template>
@@ -448,6 +463,3 @@
     </div>
   </body>
 </html>
-
-<!-- TODO: mobile styling -->
-<!-- TODO: cleanup code  -->
