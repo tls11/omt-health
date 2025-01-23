@@ -57,10 +57,10 @@
         <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://omthealth.janeapp.com/" target="_blank" class="absolute right-0 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient portal</a>
         <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://patients.tonguethrust.com/" target="_blank" class="absolute right-40 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient videos</a>
         <a href="#home" class="">
-          <img class="mx-auto mb-5 md:mt-24 w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
+          <img class="mx-auto mb-8 md:mb-5 md:mt-24 w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
         </a>
         <!-- Desktop Menu -->
-        <nav class="mb-14 mt-8 hidden items-center text-2xl md:flex md:justify-around lg:justify-center lg:gap-10">
+        <nav class="mb-12 mt-14 hidden items-center text-2xl md:flex md:justify-around lg:justify-center lg:gap-10">
           <a
             :class="{
               'border-b-2 border-slate-500': $store.route.page === '#home' || $store.route.page === '',
@@ -135,7 +135,7 @@
                 with issues such as speech problems, sleep apnea, snoring, digestion, clenching/grinding habits and TMJ disorders.
               </li>
             </ul>
-            <img class="mt-8 h-[280px] rounded-md" src="./images/omt/rocks.png" alt="balanced rocks" />
+            <img class="mt-8 h-[205px] md:h-[262.5px] rounded-md" src="./images/omt/rocks.png" alt="balanced rocks" />
           </section>
           <div class="flex flex-col items-center">
             <p id="contact" class="mb-6 mt-8 text-center">Do your face, mouth, and mannerisms signal a myofunctional disorder?</p>
@@ -151,12 +151,18 @@
             </div>
           </div>
           <div class="flex flex-col items-center w-full md:justify-center md:flex-row md:mt-2 leading-4">
-            <p>2660 Townsgate Road, Suite 450<span class="hidden md:inline">,</span></p>
+            <p>
+              2660 Townsgate Road, Suite 450
+              <span class="hidden md:inline">,</span>
+            </p>
             <p class="md:ml-1">Westlake Village, CA 91361</p>
           </div>
           <img class="mb-4 h-48 md:mt-1 w-full rounded object-cover" src="./images/omt/village.jpeg" alt="westlake village" />
           <div class="flex flex-col items-center w-full md:justify-center md:flex-row leading-4">
-            <p>102 S. Catalina Street<span class="hidden md:inline">,</span></p>
+            <p>
+              102 S. Catalina Street
+              <span class="hidden md:inline">,</span>
+            </p>
             <p class="md:ml-1">Ventura, CA 93001</p>
           </div>
           <img class="mb-8 h-48 w-full md:mt-1 rounded object-cover" src="./images/omt/venturac.png" alt="ventura" />
