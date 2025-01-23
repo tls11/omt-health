@@ -75,7 +75,7 @@
           <button @click="scrollToElement('contact')" class="">Contact</button>
         </nav>
         <!-- Mobile Menu Button -->
-        <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" @click.outside="mobileMenuIsOpen = false" :aria-expanded="mobileMenuIsOpen" type="button" class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-300" aria-label="mobile menu" aria-controls="mobileMenu">
+        <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" @click.outside="mobileMenuIsOpen = false" :aria-expanded="mobileMenuIsOpen" type="button" class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-700" aria-label="mobile menu" aria-controls="mobileMenu">
           <svg x-cloak x-show="!mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
