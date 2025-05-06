@@ -10,10 +10,18 @@
     <link rel="manifest" href="/site.webmanifest" />
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <meta name="description" content="OMT Health provides myofunctional therapy to help stop oral and facial habits that can affect your smile, appearance, and health." id="meta-description">
     <script>
       document.addEventListener('alpine:init', () => {
         Alpine.store('route', {
           page: window.location.hash || '',
+          descriptions: {
+            '': 'OMT Health provides myofunctional therapy to help stop oral and facial habits that can affect your smile, appearance, and health.',
+            '#home': 'OMT Health provides myofunctional therapy to help stop oral and facial habits that can affect your smile, appearance, and health.',
+            '#meetem': 'Meet Emily Fobel, a Certified Orofacial Myofunctional Therapist at OMT Health with extensive experience in treating patients of all ages.',
+            '#omt': 'Learn about Orofacial Myofunctional Therapy (OMT) and how it treats disorders of the muscles and functions of the face and mouth.',
+            '#faq': 'Frequently asked questions about myofunctional therapy, including treatment duration, process, insurance, and telehealth options.'
+          },
           init() {
             window.addEventListener('hashchange', () => {
               this.updatePageFromHash()
@@ -22,7 +30,21 @@
           },
           updatePageFromHash() {
             this.page = window.location.hash || ''
+            this.updateMetaDescription()
           },
+          updateMetaDescription() {
+            const metaDesc = document.getElementById('meta-description')
+            const description = this.descriptions[this.page] || this.descriptions['']
+            metaDesc.setAttribute('content', description)
+
+            // Update title as well for better SEO
+            let pageTitle = 'OMT Health'
+            if (this.page && this.page !== '#home') {
+              const pageName = this.page.substring(1) // Remove the # character
+              pageTitle = `${pageName.charAt(0).toUpperCase() + pageName.slice(1)} | OMT Health`
+            }
+            document.title = pageTitle
+          }
         })
       })
     </script>
