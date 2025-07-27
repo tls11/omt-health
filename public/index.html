@@ -38,12 +38,14 @@
             metaDesc.setAttribute('content', description)
 
             // Update title as well for better SEO
-            let pageTitle = 'OMT Health'
-            if (this.page && this.page !== '#home') {
-              const pageName = this.page.substring(1) // Remove the # character
-              pageTitle = `${pageName.charAt(0).toUpperCase() + pageName.slice(1)} | OMT Health`
+            const pageTitles = {
+              '': 'OMT Health',
+              '#home': 'OMT Health',
+              '#meetem': 'Meet Em | OMT Health',
+              '#omt': 'OMT | OMT Health',
+              '#faq': 'FAQ | OMT Health'
             }
-            document.title = pageTitle
+            document.title = pageTitles[this.page] || 'OMT Health'
           }
         })
       })
@@ -484,7 +486,7 @@
       <footer class="mt-11 min-w-full rounded p-4">
         <div class="container mx-auto flex flex-col items-center justify-center text-center">
           <p class="mb-2 text-sm text-gray-600">The content on this website is for educational and informational purposes only and should not be used as medical advice, diagnosis, or treatment.</p>
-          <p class="text-xs text-gray-500">© 2024 OMT Health, Inc. All rights reserved.</p>
+          <p class="text-xs text-gray-500">© 2025 OMT Health, Inc. All rights reserved.</p>
         </div>
       </footer>
     </div>
