@@ -24,6 +24,10 @@ module.exports = {
                 xl: "1280px",
                 // => @media (min-width: 1280px) { ... }
             },
+            float: {
+                right: "float: right",
+                left: "float: left",
+            },
         },
     },
     variants: {
@@ -38,11 +42,5 @@ module.exports = {
         purgeLayersByDefault: true,
         defaultLineHeights: true,
         standardFontWeights: true,
-    },
-    extend: {
-        float: {
-            right: "float: right",
-            left: "float: left",
-        },
     },
 };
