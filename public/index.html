@@ -4,13 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png" />
+    <link 
+      rel="apple-touch-icon" 
+      sizes="180x180" 
+      href="/images/favicons/apple-touch-icon.png" 
+    />
+    <link 
+      rel="icon" 
+      type="image/png" 
+      sizes="32x32" 
+      href="/images/favicons/favicon-32x32.png" 
+    />
+    <link 
+      rel="icon" 
+      type="image/png" 
+      sizes="16x16" 
+      href="/images/favicons/favicon-16x16.png" 
+    />
     <link rel="manifest" href="/site.webmanifest" />
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <meta name="description" content="OMT Health provides myofunctional therapy to help stop oral and facial habits that can affect your smile, appearance, and health." id="meta-description">
+    <script 
+      defer 
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script 
+      defer 
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <meta 
+      name="description" 
+      content="OMT Health provides myofunctional therapy to help stop oral and facial habits that can affect your smile, appearance, and health." 
+      id="meta-description"
+    >
     <script>
       document.addEventListener('alpine:init', () => {
         Alpine.store('route', {
@@ -22,16 +46,19 @@
             '#omt': 'Learn about Orofacial Myofunctional Therapy (OMT) and how it treats disorders of the muscles and functions of the face and mouth.',
             '#faq': 'Frequently asked questions about myofunctional therapy, including treatment duration, process, insurance, and telehealth options.'
           },
+          
           init() {
             window.addEventListener('hashchange', () => {
               this.updatePageFromHash()
             })
             this.updatePageFromHash()
           },
+          
           updatePageFromHash() {
             this.page = window.location.hash || ''
             this.updateMetaDescription()
           },
+          
           updateMetaDescription() {
             const metaDesc = document.getElementById('meta-description')
             const description = this.descriptions[this.page] || this.descriptions['']
@@ -58,30 +85,64 @@
     <title>OMT Health</title>
   </head>
   <body class="bg-omtbeige font-forum tracking-tight md:tracking-normal text-sm md:text-lg text-slate-700 antialiased">
-    <div class="mx-auto my-16 flex min-h-screen md:max-w-[80%] flex-col items-center justify-center overflow-visible rounded md:border-2 md:border-slate-500 px-8">
+    <div class="mx-auto my-16 flex min-h-screen md:max-w-[80%] flex-col 
+                items-center justify-center overflow-visible rounded 
+                md:border-2 md:border-slate-500 px-8">
       <header
         x-data="{
           mobileMenuIsOpen: false,
           scrollToElement: function (id) {
-              location.hash = '#home'
-              setTimeout(() => {
-                const element = document.getElementById(id)
-                if (element) {
-                  element.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                  })
-                }
-              }, 500)
+            location.hash = '#home'
+            setTimeout(() => {
+              const element = document.getElementById(id)
+              if (element) {
+                element.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                })
+              }
+            }, 500)
           },
-				}"
+        }"
         @click.away="mobileMenuIsOpen = false"
         class="w-full relative"
       >
-        <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://omthealth.janeapp.com/" target="_blank" class="absolute right-0 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient portal</a>
-        <a x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms href="https://patients.tonguethrust.com/" target="_blank" class="absolute right-40 top-4 hidden w-max rounded bg-gray-300 px-6 py-2.5 text-base font-medium uppercase leading-tight text-black shadow-md transition duration-150 ease-in-out hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-lg md:inline-block">patient videos</a>
-        <a href="#home" class="">
-          <img class="mx-auto mb-8 md:mb-5 md:mt-24 w-[26rem] sm:max-w-xl" src="./images/omt/logo-text-new-color.png" alt="omt health lip logo" />
+        <a 
+          x-cloak 
+          x-show="$store.route.page === '#home' || $store.route.page === ''" 
+          x-transition.duration.450ms 
+          href="https://omthealth.janeapp.com/" 
+          target="_blank" 
+          class="absolute right-0 top-4 hidden w-max rounded bg-gray-300 
+                 px-6 py-2.5 text-base font-medium uppercase leading-tight 
+                 text-black shadow-md transition duration-150 ease-in-out 
+                 hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 
+                 focus:shadow-lg focus:outline-none focus:ring-0 
+                 active:bg-slate-500 active:shadow-lg md:inline-block"
+        >
+          patient portal
+        </a>
+        <a 
+          x-cloak 
+          x-show="$store.route.page === '#home' || $store.route.page === ''" 
+          x-transition.duration.450ms 
+          href="https://patients.tonguethrust.com/" 
+          target="_blank" 
+          class="absolute right-40 top-4 hidden w-max rounded bg-gray-300 
+                 px-6 py-2.5 text-base font-medium uppercase leading-tight 
+                 text-black shadow-md transition duration-150 ease-in-out 
+                 hover:bg-slate-400 hover:shadow-lg focus:bg-slate-400 
+                 focus:shadow-lg focus:outline-none focus:ring-0 
+                 active:bg-slate-500 active:shadow-lg md:inline-block"
+        >
+          patient videos
+        </a>
+        <a href="#home">
+          <img 
+          class="mx-auto mb-8 md:mb-5 md:mt-24 w-[26rem] sm:max-w-xl" 
+          src="./images/omt/logo-text-new-color.png" 
+          alt="omt health lip logo" 
+        />
         </a>
         <!-- Desktop Menu -->
         <nav class="mb-12 mt-14 hidden items-center text-2xl md:flex md:justify-around lg:justify-center lg:gap-10">
@@ -96,10 +157,18 @@
           <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#meetem' }" href="#meetem">Meet Emily</a>
           <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#omt' }" href="#omt">What is OMT</a>
           <a :class="{ 'border-b-2 border-slate-500': $store.route.page === '#faq' }" href="#faq">FAQs</a>
-          <button @click="scrollToElement('contact')" class="">Contact</button>
+          <button @click="scrollToElement('contact')">Contact</button>
         </nav>
         <!-- Mobile Menu Button -->
-        <button @click="mobileMenuIsOpen = !mobileMenuIsOpen" @click.outside="mobileMenuIsOpen = false" :aria-expanded="mobileMenuIsOpen" type="button" class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-700" aria-label="mobile menu" aria-controls="mobileMenu">
+        <button 
+          @click="mobileMenuIsOpen = !mobileMenuIsOpen" 
+          @click.outside="mobileMenuIsOpen = false" 
+          :aria-expanded="mobileMenuIsOpen" 
+          type="button" 
+          class="fixed right-6 top-6 z-20 flex text-slate-700 md:hidden dark:text-slate-700" 
+          aria-label="mobile menu" 
+          aria-controls="mobileMenu"
+        >
           <svg x-cloak x-show="!mobileMenuIsOpen" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
@@ -108,21 +177,35 @@
           </svg>
         </button>
         <!-- Mobile Menu -->
-        <nav x-cloak x-show="mobileMenuIsOpen" x-transition:enter="transition motion-reduce:transition-none ease-out duration-300" x-transition:enter-start="-translate-y-full" x-transition:enter-end="translate-y-0" x-transition:leave="transition motion-reduce:transition-none ease-out duration-300" x-transition:leave-start="translate-y-0" x-transition:leave-end="-translate-y-full" id="mobileMenu" class="fixed inset-x-0 top-0 z-10 flex max-h-svh flex-col items-center divide-y overflow-y-auto rounded-b-xl border-b border-omtgray bg-gray-100 px-6 pb-6 pt-20 text-4xl md:hidden">
+        <nav 
+          x-cloak 
+          x-show="mobileMenuIsOpen" 
+          x-transition:enter="transition motion-reduce:transition-none ease-out duration-300" 
+          x-transition:enter-start="-translate-y-full" 
+          x-transition:enter-end="translate-y-0" 
+          x-transition:leave="transition motion-reduce:transition-none ease-out duration-300" 
+          x-transition:leave-start="translate-y-0" 
+          x-transition:leave-end="-translate-y-full" 
+          id="mobileMenu" 
+          class="fixed inset-x-0 top-0 z-10 flex max-h-svh flex-col 
+                 items-center divide-y overflow-y-auto rounded-b-xl 
+                 border-b border-omtgray bg-gray-100 px-6 pb-6 pt-20 
+                 text-4xl md:hidden"
+        >
           <a href="#home">Home</a>
           <a href="#meetem">Meet Emily</a>
           <a href="#omt">What is OMT</a>
           <a href="https://omthealth.janeapp.com/">Patient Portal</a>
           <a href="https://patients.tonguethrust.com/">Patient Videos</a>
           <a href="#faq">FAQs</a>
-          <button @click="scrollToElement('contact')" class="">Contact</button>
+          <button @click="scrollToElement('contact')">Contact</button>
         </nav>
       </header>
       <div x-data="{}" class="flex w-full flex-grow flex-col items-center px-5 text-justify leading-normal">
         <div x-cloak x-show="$store.route.page === '#home' || $store.route.page === ''" x-transition.duration.450ms class="flex w-full flex-grow flex-col items-center justify-items-center">
           <!-- home -->
           <section class="flex flex-col items-center">
-            <p class="">Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
+            <p>Myofunctional therapy is a program of exercises that helps you stop oral and facial habits that can ruin your smile, change your appearance and sap your health. It retrains the muscles of your mouth, jaw and face, bringing them into harmony. And it instills new and positive habits to make sure those changes last.</p>
             <br />
             <p class="mb-1 mt-5">“Myo” can help you:</p>
             <ul class="tracking-tighter md:tracking-normal">
@@ -165,7 +248,7 @@
             <p id="contact" class="mb-6 mt-8 text-center">Do your face, mouth, and mannerisms signal a myofunctional disorder?</p>
             <p class="font-bold">Contact OMT Health</p>
             <div class="uppercase flex flex-col items-center md:flex-row leading-4 text-sm md:text-lg">
-              <p class="">Myofunctional Therapy</p>
+              <p>Myofunctional Therapy</p>
               <p class="md:ml-1">In-Person or Online</p>
             </div>
             <div class="flex flex-col items-center md:flex-row md:w-2/3 justify-around md:mt-2">
@@ -197,7 +280,7 @@
             <div class="flex min-h-min md:basis-1/4 flex-col items-stretch justify-start gap-4 overflow-hidden rounded-lg mt-5 md:mt-0">
               <div class="flex flex-col text-center font-semibold">
                 <img src="./images/omt/emily2.png" alt="Emily" class="max-h-48 md:max-h-60 rounded-lg object-contain" />
-                <p class="">Emily Fobel, OTR/L, CLVT, AOMT-C</p>
+                <p>Emily Fobel, OTR/L, CLVT, AOMT-C</p>
               </div>
               <img src="./images/omt/myo-cert.jpeg" alt="myo certification badge" class="max-h-40 md:max-h-48 rounded-lg object-contain" />
             </div>
@@ -210,14 +293,14 @@
             </div>
           </article>
         </div>
-        <div x-cloak x-show="$store.route.page === '#faq'" x-transition.duration.450ms class="">
+        <div x-cloak x-show="$store.route.page === '#faq'" x-transition.duration.450ms>
           <!-- faq -->
           <section>
             <h3 class="font-bold">How long does a myofunctional therapy program take?</h3>
             <p>A traditional program takes place over a twelve month period, although treatment length may vary. There are three phases to therapy: the intensive phase, the habituation phase and the maintenance phase. Initially, visits are held weekly but move to monthly intervals as therapy progresses. For success in this therapy, consistent exercise every day is necessary until the patient has corrected their improper muscle pattern. It also requires commitment by the patient, family, and time. It is possible that your myofunctional therapy journey will include referrals to other professionals such as dentists, doctors, orthodontists, ENTs, sleep specialists, and osteopaths. These factors may change the length of your program, however, a holistic approach is essential for successful treatment. Often, one of these professionals will refer you for myofunctional therapy. If a thumb or finger sucking habit is present, it must be addressed and eliminated before treatment can commence. A habit elimination program can vary but is typically around thirty days.</p>
 
             <h3 class="mt-8 font-bold">What does myofunctional therapy treatment look like?</h3>
-            <p class="">You will be given a therapy kit at the beginning of your program. Each visit you will receive a list of exercises to perform, some of which might include items from your kit, though many do not require extra materials. You are expected to complete exercises two times a day, with three times a day being encouraged. Orofacial myofunctional therapy is painless and the exercises are relatively simple.</p>
+            <p>You will be given a therapy kit at the beginning of your program. Each visit you will receive a list of exercises to perform, some of which might include items from your kit, though many do not require extra materials. You are expected to complete exercises two times a day, with three times a day being encouraged. Orofacial myofunctional therapy is painless and the exercises are relatively simple.</p>
 
             <h3 class="mt-8 font-bold">How does myofunctional therapy impact orthodontics? Should myofunctional therapy occur before or after orthodontic treatment?</h3>
             <p>Orthodontics and Orofacial Myofunctional Therapy are closely related, with each directly impacting the other. Specialists in Orofacial Myofunctional Therapy promote a balance of the muscles and orofacial function as well as improving tongue posture thus aiding in maintaining orthodontic stability, helping to diminish orthodontic relapse after braces are removed. Each case must be analyzed and discussed by the professionals involved. Treatment might be indicated before, during, or after orthodontics.</p>
@@ -269,7 +352,7 @@
             </ul>
           </section>
         </div>
-        <div x-cloak x-show="$store.route.page === '#omt'" x-transition.duration.450ms class="">
+        <div x-cloak x-show="$store.route.page === '#omt'" x-transition.duration.450ms>
           <!-- omt -->
           <p>Orofacial Myofunctional Therapy (OMT), more commonly referred to as myofunctional therapy, is related to the study, research, prevention, evaluation, diagnosis, and treatment of functional and structural alterations in the region of the mouth (oro), face (facial), and regions of the neck (oropharyngeal area). The purpose of therapy is to assist the normalization of the developing, or developed, craniofacial structures and function through neurological re-education exercises.</p>
           <br />
