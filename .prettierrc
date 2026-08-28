@@ -1,14 +1,21 @@
 {
   "semi": false,
   "singleQuote": true,
-  "jsxSingleQuote": true,
-  "printWidth": 7000,
+  "printWidth": 100,
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "es5",
   "bracketSpacing": true,
   "arrowParens": "avoid",
   "htmlWhitespaceSensitivity": "ignore",
-  "endOfLine": "auto",
-  "parser": "html"
+  "endOfLine": "lf",
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
 }
