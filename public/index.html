@@ -76,6 +76,30 @@
       [x-cloak] {
         display: none !important;
       }
+
+      .meet-figure {
+        width: 9.5rem;
+        height: auto;
+        max-width: 100%;
+      }
+
+      .meet-portrait {
+        width: 8rem;
+      }
+
+      .meet-stack {
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .meet-figure {
+          width: 11rem;
+        }
+
+        .meet-portrait {
+          width: 9.25rem;
+        }
+      }
     </style>
     <title>OMT Health</title>
   </head>
@@ -331,30 +355,30 @@
           <!-- meet em -->
           <article class="mb-0 flex flex-col gap-8 md:flex-row">
             <div
-              class="mt-5 flex min-h-min flex-col items-stretch justify-start gap-4 overflow-hidden rounded-lg md:mt-0 md:basis-1/4"
+              class="meet-stack mt-5 flex min-h-min flex-col items-center justify-start md:mt-0 md:basis-1/4"
             >
-              <div class="flex flex-col text-center font-semibold">
+              <div class="flex w-full flex-col items-center text-center font-semibold">
                 <template x-if="$store.route.page === '#meetem'">
                   <img
                     src="./images/omt/emily2.jpeg"
                     alt="Emily"
-                    class="max-h-48 rounded-lg object-contain md:max-h-60"
+                    class="meet-figure meet-portrait rounded-lg object-contain"
                   />
                 </template>
                 <p>Emily Fobel, OTR/L, CLVT, AOMT-C</p>
               </div>
               <template x-if="$store.route.page === '#meetem'">
                 <img
-                  src="./images/omt/myo-cert.jpeg"
+                  src="./images/omt/myo-cert.png"
                   alt="myo certification badge"
-                  class="max-h-40 rounded-lg object-contain md:max-h-48"
+                  class="meet-figure object-contain"
                 />
               </template>
               <template x-if="$store.route.page === '#meetem'">
                 <img
                   src="./images/omt/breathe-ambassador-2026.png"
                   alt="Breathe Institute Ambassador 2026 badge"
-                  class="max-h-40 object-contain md:max-h-48"
+                  class="meet-figure object-contain"
                 />
               </template>
             </div>
