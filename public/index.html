@@ -87,8 +87,28 @@
         width: 8rem;
       }
 
+      .meet-cert {
+        width: 10.75rem;
+      }
+
       .meet-stack {
         gap: 1.5rem;
+      }
+
+      .site-header {
+        min-width: 0;
+      }
+
+      .site-logo-link {
+        display: block;
+        width: min(100%, 26rem);
+        margin-inline: auto;
+      }
+
+      .site-logo {
+        display: block;
+        width: 100%;
+        height: auto;
       }
 
       @media (min-width: 768px) {
@@ -98,6 +118,10 @@
 
         .meet-portrait {
           width: 9.25rem;
+        }
+
+        .meet-cert {
+          width: 12.5rem;
         }
       }
     </style>
@@ -126,7 +150,7 @@
           },
         }"
         @click.away="mobileMenuIsOpen = false"
-        class="relative w-full"
+        class="site-header relative w-full"
       >
         <a
           x-cloak
@@ -148,9 +172,9 @@
         >
           patient videos
         </a>
-        <a href="#home">
+        <a href="#home" class="site-logo-link">
           <img
-            class="mx-auto mb-8 w-[26rem] sm:max-w-xl md:mb-5 md:mt-24"
+            class="site-logo mb-8 md:mb-5 md:mt-24"
             src="./images/omt/logo-text-new-color.png"
             alt="omt health lip logo"
           />
@@ -371,7 +395,7 @@
                 <img
                   src="./images/omt/myo-cert.png"
                   alt="myo certification badge"
-                  class="meet-figure object-contain"
+                  class="meet-figure meet-cert object-contain"
                 />
               </template>
               <template x-if="$store.route.page === '#meetem'">
